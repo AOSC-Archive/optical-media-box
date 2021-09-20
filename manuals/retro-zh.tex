@@ -1,6 +1,9 @@
 \input{texlib/manual.tex}
 
 \renewcommand{\doctitleB}[0]{用户手册}
+\renewcommand{\tpVersion}[0]{版本}
+\renewcommand{\tpCopyright}[0]{版权所有 {\copyright} 2021 AOSC 社群集体创作}
+\renewcommand{\tpLicense}[1]{使用 #1 许可证发布}
 
 \begin{document}
     \makecoverpage
@@ -10,7 +13,7 @@
     \pagestyle{plain}
     \rmfamily\mdseries\normalsize
 
-    \chapter*{Introduction}
+    \chapter{Introduction}
 
     \lipsum[1]
 
@@ -58,21 +61,21 @@
     
 
 
-    \section*{Afternotes}
+    \section{Afternotes}
     \lipsum[1]
     
     \lipsum[1]
 
 
 
-    \chapter*{Appendix I: 版权}
+    \chapter{附录 I: 版权}
 
-    本手册以 CC BY 4.0 许可证发布。
+    本手册以 \underline{CC BY 4.0} 许可证发布。
 
     本手册的源代码发布于：\newline
     \hspace{2em}\underline{\ttfamily\footnotesize{https://github.com/AOSC-Dev/optical-media-box}}
 
-    以下是作者列表（以 Unicode 码位顺序排列）：
+    \vspace{1ex}以下是作者列表（以 Unicode 码位顺序排列）：
 
     \begin{compactitem}
         \item Mingcong Bai

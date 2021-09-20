@@ -1,0 +1,88 @@
+\input{texlib/box.tex}
+
+\begin{document}
+    \pagestyle{empty}
+    \raggedbottom
+    \raggedright
+    \Large
+    
+    % {
+        % \color{white}
+    % }
+    AOSC OS/Retro\\
+    Optical Installation Media Box (EN)\\
+    128 mm * 179 mm * 20 mm\\
+    To be printed on A3 paper
+
+    % =====================================
+    % Back
+    % =====================================
+    \AddToShipoutPictureFG*{%
+        \put(10mm,50mm){%
+            \begin{tcolorbox}[size=tight,width=128mm,height=179mm,colframe=black,colback=white]
+                Back Cover
+            \end{tcolorbox}
+        }%
+    }
+
+    % =====================================
+    % Front - Left Side
+    % =====================================
+    \AddToShipoutPictureFG*{%
+        \put(138mm,50mm){%
+            \begin{tcolorbox}[size=tight,width=20mm,height=179mm,colframe=black,colback=white]
+                Front\\
+                Left Side
+            \end{tcolorbox}
+        }%
+    }
+    
+    % =====================================
+    % Front Cover
+    % =====================================
+    \makeBoxCover
+
+    % =====================================
+    % Front - Right Side
+    % =====================================
+    \AddToShipoutPictureFG*{%
+        \put(286mm,50mm){%
+            \begin{tcolorbox}[size=tight,width=20mm,height=179mm,colframe=black,colback=white]
+                Front\\
+                Right Side
+            \end{tcolorbox}
+        }%
+    }
+    \AddToShipoutPictureFG*{%
+        \put(306mm,50mm){%
+            \begin{tcolorbox}[size=tight,width=25mm,height=179mm,colframe=black,colback=white]
+                Glue\newline Zone
+            \end{tcolorbox}
+        }%
+    }
+
+    % =====================================
+    % Top
+    % =====================================
+    \AddToShipoutPictureFG*{%
+        \put(158mm,229mm){%
+            \begin{tcolorbox}[size=tight,width=128mm,height=20mm,colframe=black,colback=white]
+                Top\\
+                128 mm * 20 mm
+            \end{tcolorbox}
+        }%
+    }
+
+    % =====================================
+    % Bottom
+    % =====================================
+    \AddToShipoutPictureFG*{%
+        \put(158mm,30mm){%
+            \begin{tcolorbox}[size=tight,width=128mm,height=20mm,colframe=black,colback=white]
+                Bottom
+            \end{tcolorbox}
+        }%
+    }
+
+
+\end{document}
