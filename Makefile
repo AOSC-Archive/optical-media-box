@@ -2,8 +2,8 @@ help:
 	@echo "List of build targets:"
 	@echo " "
 	@echo "	all"
-	@echo "	manuals"
-	@echo "	boxes"
+	@echo "	manual"
+	@echo "	box"
 	@echo "	en"
 	@echo "	zh"
 	@echo " "
@@ -25,12 +25,11 @@ push:
 	@echo "Pushing tags..."
 	git push origin '*'
 
-
-manuals:
+manual:
 	./tex.sh manuals/retro-en.tex
 	./tex.sh manuals/retro-zh.tex
 
-boxes:
+box:
 	./tex.sh boxes/box-retro-en.tex
 
 en:

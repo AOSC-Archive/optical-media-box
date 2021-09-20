@@ -34,8 +34,8 @@ make all
 Targets:
 
 - all
-- manuals
-- boxes
+- manual
+- box
 - en
 - zh
 
