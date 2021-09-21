@@ -1,0 +1,244 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[a3paper,11pt]{article}
+
+\usepackage[a3paper,landscape,hmargin=10mm,tmargin=10mm,bmargin=10mm]{geometry}
+\usepackage{calc}
+\usepackage{amsmath,xltxtra,xunicode}
+\usepackage{titlesec}
+\usepackage{fontspec}
+\usepackage{wasysym,oz,pxfonts,txfonts}
+
+
+\usepackage{xeCJK}
+\XeTeXlinebreaklocale "zh" 
+\XeTeXlinebreakskip = 0pt plus 1pt 
+
+% =========================================
+\usepackage{lipsum}
+\usepackage{everypage}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{paralist}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{tocloft}
+\usepackage{longtable}
+\usepackage{tabu}
+\usepackage{makecell}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{fontawesome5}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{ragged2e}
+\usepackage{tcolorbox}
+\setmainfont{Source Han Serif CN}
+\setromanfont{Source Han Serif CN}
+\setsansfont{Source Han Serif CN}
+\setmonofont{Source Code Pro}
+\setCJKmainfont{Source Han Serif CN}
+\setCJKromanfont{Source Han Serif CN}
+\setCJKsansfont{Source Han Serif CN}
+\setCJKmonofont{Source Han Sans CN}
+\title{AOSC OS/Retro - Optical Media Box}
+\author{Various Authors at AOSC}
+\date{2021-09-20}
+\pagestyle{empty}
+% =========================================
+
+% =========================================
+% START CORPORATION CONFIG
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlength{\baselineskip}{12pt}
+% END CORPORATION CONFIG
+% =========================================
+
+% =========================================
+% START COMMON STYLESHEET
+% Table
+\renewcommand\theadalign{l}
+\renewcommand\theadfont{\sffamily\bfseries}
+% Font Size
+
+% END COMMON STYLESHEET
+% =========================================
+
+
+
+% CoverPage
+\newcommand{\doctitleA}[0]{AOSC OS/Retro}
+\newcommand{\tpOptiInstMedia}[0]{Optical Installation Media}
+
+\newcommand{\makeBoxCover}[0]{
+    % Front
+    \AddToShipoutPictureFG*{%
+        \put(198mm,50mm){%
+            \begin{tcolorbox}[size=tight,width=128mm,height=179mm,colframe=black!0!white,colback=white]
+                \hfill\begin{minipage}{120mm}
+                    \vspace{190pt}
+                    {\Huge\fontspec{Source Han Serif CN Heavy}\doctitleA}
+
+                    \vspace{15pt}
+                    {\fontspec{Liberation Sans}\LARGE\mdseries\itshape{\tpOptiInstMedia}}
+
+                    \small
+                    \vspace{50pt} With latest support for SATA hard drives!
+                \end{minipage}
+            \end{tcolorbox}
+        }%
+    }
+
+    % Top
+    \AddToShipoutPictureFG*{%
+        \put(198mm,229mm){%
+            \begin{tcolorbox}[size=tight,width=128mm,height=20mm,colframe=white,colback=white]
+                Top\\
+                128 mm * 20 mm
+            \end{tcolorbox}
+        }%
+    }
+}
+
+\newcommand{\makeBoxBack}[0]{
+    % Back
+    \AddToShipoutPictureFG*{%
+        \put(50mm,50mm){%
+            \begin{tcolorbox}[size=tight,width=128mm,height=179mm,colframe=white,colback=white]
+                \hfill\begin{minipage}{120mm}
+                    \normalsize
+                    \sffamily
+
+                    \vspace{20pt}
+
+                    % \fbox{
+                        \begin{minipage}[t]{70mm}
+                        \vspace{20pt}
+                            {\Large\bfseries Features}
+
+                            \begin{compactitem}
+                                \fontspec{Source Sans Pro}
+                                \item Linux Kernel 5.4+
+                                \item IceWM
+                                \item APT+DPKG
+                            \end{compactitem}
+
+                            \vspace{15pt}
+                            {\Large\bfseries Hardware Requirements}
+
+                            \begin{compactitem}
+                                \fontspec{Source Sans Pro}
+                                \item i386 CPU
+                                \item 128 MB RAM (DDR)
+                                \item 32 GB HDD (IDE, SATA)
+                            \end{compactitem}
+
+                            {\small Some features require Internet access.}
+                        \vspace{20pt}
+                        \end{minipage}
+                    % }
+                \end{minipage}
+            \end{tcolorbox}
+        }%
+    }
+}
+
+\newcommand{\makeSliceLineHorizontal}[2]{
+    % \AddToShipoutPictureFG*{\put(#1){\begin{tcolorbox}[size=tight,width=10mm,height=10mm,colframe=gray,colback=white]\color{red}\vrule height 1pt width 9.8mm \end{tcolorbox}}}
+    \AddToShipoutPictureFG*{\put(#1){\color{red}\vrule height 0.4pt width #2}}
+}
+\newcommand{\makeSliceLineVertical}[2]{
+    % \AddToShipoutPictureFG*{\put(#1){\begin{tcolorbox}[size=tight,width=10mm,height=10mm,colframe=gray,colback=white]\color{red}\vrule height 9.8mm width 1pt \end{tcolorbox}}}
+    \AddToShipoutPictureFG*{\put(#1){\color{red}\vrule height #2 width 0.4pt}}
+}
+\newcommand{\makeBoxPositionMarks}[0]{
+    % Vertical Glue Zone
+    \makeSliceLineVertical{30mm,45mm}{189mm}
+    \makeSliceLineHorizontal{20mm,50mm}{20mm}
+    \makeSliceLineHorizontal{20mm,229mm}{20mm}
+
+    % Bottom Glue Zone
+    \makeSliceLineHorizontal{45mm,35mm}{138mm}
+    \makeSliceLineVertical{50mm,25mm}{20mm}
+    \makeSliceLineVertical{178mm,25mm}{20mm}
+
+    % Back Cover Top Notice
+    \makeSliceLineVertical{50mm,234mm}{10mm}
+    \makeSliceLineVertical{178mm,234mm}{10mm}
+    
+    % Bottom Glue Zone
+    \makeSliceLineHorizontal{188mm,30mm}{8mm}
+    \makeSliceLineHorizontal{328mm,30mm}{8mm}
+    \makeSliceLineVertical{198mm,18mm}{10mm}
+    \makeSliceLineVertical{326mm,18mm}{10mm}
+    % \makeSliceLineVertical{50mm,234mm}{10mm}
+    % \makeSliceLineVertical{178mm,234mm}{10mm}
+}
+\newcommand{\makeBoxAccessories}[0]{
+
+    
+    % Vertical Glue Zone
+    \AddToShipoutPictureBG*{%
+        \put(30mm,50mm){%
+            \begin{tcolorbox}[size=tight,width=20mm,height=179mm,colframe=white,colback=white,rightrule=0pt]
+                \color{red}
+                Glue\newline
+                Zone\newline
+                粘胶区
+            \end{tcolorbox}
+        }%
+    }
+
+    % Bottom Glue Zone
+    \AddToShipoutPictureBG*{%
+        \put(50mm,35mm){%
+            \begin{tcolorbox}[size=tight,width=128mm,height=15mm,colframe=white,colback=white,toprule=0pt]
+                \center\vspace{12pt}\color{red}
+                Glue Zone 粘胶区
+            \end{tcolorbox}
+        }%
+    }
+
+    % Top Beyond Top
+    \AddToShipoutPictureBG*{%
+        \put(198mm,249mm){%
+            \begin{tcolorbox}[size=tight,width=128mm,height=12mm,colframe=black,colback=white,bottomrule=0pt]
+                \color{red}Top Beyond Top\\
+                128 mm * 12 mm
+            \end{tcolorbox}
+        }%
+    }
+
+    % Bottom
+    \AddToShipoutPictureBG*{%
+        \put(198mm,30mm){%
+            \begin{tcolorbox}[size=tight,width=128mm,height=20mm,colframe=black!25!white,colback=white,toprule=0pt]
+                Bottom
+            \end{tcolorbox}
+        }%
+    }
+
+    % Left Side
+    \AddToShipoutPictureBG*{%
+        \put(178mm,50mm){%
+            \begin{tcolorbox}[size=tight,width=20mm,height=179mm,colframe=black!25!white,colback=white]
+                Front\\
+                Left Side
+            \end{tcolorbox}
+        }%
+    }
+
+    % Right Side
+    \AddToShipoutPictureBG*{%
+        \put(326mm,50mm){%
+            \begin{tcolorbox}[size=tight,width=20mm,height=179mm,colframe=black!25!white,colback=white]
+                Front\\
+                Right Side
+            \end{tcolorbox}
+        }%
+    }
+}

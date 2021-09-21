@@ -3,20 +3,99 @@
 \begin{document}
     \pagestyle{empty}
     \raggedbottom
-    \raggedright
-    \large
+    % \raggedright
 
-    AOSC OS/Retro\\
-    光学安装媒介包装盒\\
-    三围：128 mm * 179 mm * 20 mm\\
-    尺寸：版面适用于 A3 纸张
+    % AOSC OS/Retro
+    % 光学安装媒介包装盒
+    % 三围：132mm * 182mm * 26 *
 
-    \normalsize
     
-    \makeBoxAccessories
+    \hspace{1pt}
+    \vspace{10pt}
+    
+    % Full-page large logo?
+    \AddToShipoutPictureBG*{%
+        \put(65mm,115mm){%
+            \includegraphics[width=120mm]{retro-logo.png}
+        }%
+    }
 
-    \makeBoxCover
-    \makeBoxBack
+    \color{white}
+    \pagecolor{black}
 
-    \makeBoxPositionMarks
+    \AddToShipoutPictureFG*{\put(12mm,60mm){\begin{minipage}{170mm}
+        {\Huge\fontspec{Source Han Serif CN Heavy}\fontsize{40pt}{50pt}\selectfont\doctitleA}
+
+        \vspace{15pt}
+        {\fontspec{Liberation Sans}\huge\mdseries\itshape{\tpOptiInstMedia}}
+        
+        \vspace{45pt}
+        \large
+        {\sffamily Release Version 2021 October}
+
+        \vspace{45pt}
+        \mdseries\sffamily
+        Available for 7 architectures:\vspace{3pt}
+
+        \color{white}\bfseries
+        {i486}\hspace{5pt}
+        {ARMv4}\hspace{5pt}
+        {ARMv6}\hspace{5pt}
+        {ARMv7}\hspace{5pt}
+        {Loongson 2F}\hspace{5pt}
+        {PowerPC (32/64)}
+
+    \end{minipage}}}
+
+    \pagebreak
+
+
+
+    \color{white}
+    % \begin{tcolorbox}[width=80mm,colframe=white,colback=black,toprule=0.5pt,bottomrule=0.5pt,leftrule=0.5pt,rightrule=0.5pt]
+        % \begin{minipage}[t]{70mm}
+            \color{white}
+
+            \vspace{10pt}
+            {\large\bfseries \tFeatures}\vspace{4pt}
+            \begin{compactitem}
+                \sffamily
+                \item Linux Kernel 5.4+
+                \item IceWM
+                \item APT \& Dpkg
+            \end{compactitem}
+
+            \vspace{15pt}
+            {\large\bfseries \tHardwareRequirements}\vspace{4pt}
+            \begin{compactitem}
+                \sffamily
+                \item CPU: i486, ARMv4, ARMv6, ARMv7,\\
+                    Loongson 2F, PowerPC (32/64)
+                \item RAM: 128 MB (DDR)
+                \item 32 GB HDD (IDE, SATA)
+            \end{compactitem}
+
+            \vspace{15pt}
+            {\large\bfseries Box Contents}\vspace{4pt}
+            \begin{compactitem}
+                \sffamily
+                \item Optical Discs $\times$ 6
+                \item 20-page User Manual
+            \end{compactitem}
+
+            \vspace{10pt}
+        % \end{minipage}
+    % \end{tcolorbox}
+
+    % \vspace{40pt}
+    \vfill
+    
+    \sffamily\small
+    This operating system is a free software;
+    some of its third-party components are licensed under GPLv2, GPLv3, BSD License, MIT License, Apache License, etc.
+    The license information of each component may be found in the optical discs.
+    The source code of this operating system and its third-party components
+    may be found online at <https://github.com/AOSC-Dev>.
+    You are free to use, study, modify, copy, replicate, and redistribute the optical discs (and their contents) in this box.\\
+    Some features require Internet access; consult your ISP for details.
 \end{document}
