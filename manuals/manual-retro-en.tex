@@ -1,69 +1,326 @@
 \input{texlib/manual.tex}
 
 \begin{document}
+    \raggedbottom
     \makecoverpage
+
     \setcounter{tocdepth}{1}
     \sffamily{\tableofcontents}
     \clearpage
+
+    \hspace{40mm}
+
+    \large
+    \vspace{40mm}
+    Now that we have introduced our rationale to maintaining a Retro branch for AOSC OS
+    (we will now refer to this as AOSC OS/Retro), this page will serve as an introduction
+    to our design specifications and goals in maintaining this branch.
+    \vfill
+
     \pagestyle{plain}
     \rmfamily\mdseries\normalsize
 
-    \chapter{Introduction}
+    \chapter{Specifications}
 
-    \lipsum[1]
+    In terms of end-user experience and management characteristics, AOSC OS/Retro is a standard AOSC OS distribution.
+    However, changes are made in terms of dependencies, features, and maintenance schedules. In brief, AOSC OS/Retro will\ldots
 
-    \lipsum[1]
+    \begin{enumerate}
+        \item Come with limited architectural support - only those specified
+            as Retro will be maintained in accordance to the Retro specifications.
+        \item Share the same package tree as the mainline distribution, as well as the Core.
+        \item Share the same set of maintenance tools as the mainline distribution.
+        \item Strip down package features in interest of conserving storage and memory.
+        \item Ship in different flavours as otherwise would with the mainline distributions.
+        \item Update on a slower schedule, with a few exceptions.
+    \end{enumerate}
+
+    Now, we will present the commonalities and differences in detail.
 
 
 
-    \chapter{Installation}
-    \lipsum[1]
+
+    \section{Target Hardware}
     
-    \section{Blah blah blah}
-    \lipsum[1]
+    AOSC OS/Retro currently support the following processing architectures and devices\ldots
+
+    \begin{longtabu} {XX}
+        {Architecture} &
+        {Typical Devices}\\
+        \hline
+        {ARMv4, soft float with no Thumb support}
+            & {HP Jornada 710/720/728/820, etc.}\\
+        {ARMv6, hard float}
+            & {Raspberry Pi 1, etc.}\\
+        {ARMv7, hard float with NEON SIMD support}
+            & {Raspberry Pi 2, etc.}\\
+        {Intel 80486 compatible or above (\icode{i486})}
+            & {IBM Palm Top PC110, Toshiba Satellite 430CDT, Dell Latitude CPi, Asus EeePC 901 etc.}\\
+        {Loongson 2F (\icode{loongson2f})}
+            & {Lemote YeeLoong 8089B/D, etc.}\\
+        {PowerPC G3 and above, 32-bit big endian (\icode{powerpc})}
+            & {Apple iBook G3, Apple iMac G4, etc.}\\
+        {PowerPC G5 and above, 64-bit big endain (\icode{ppc64})}
+            & {Apple PowerMac G5, IBM eServer pSeries 610, etc.}\\
+        \hline
+    \end{longtabu}
+
+    \section{Common Components and Tools}
     
-    \section{Blah blah blah}
-    \lipsum[1]
+    As AOSC OS/Retro is \textit{not} a fork but a \textit{branch} of the mainline AOSC OS distribution,
+    it will share not only the package tree, but also the Core and the maintenance tools as the mainline\ldots
     
-    \section{Blah blah blah}
-    \lipsum[1]
-
-
-
-    \chapter{Another Chapter}
-    \lipsum[1]
-    
-    \lipsum[1]
-
-
-
-    \chapter{The Third Chapter}
-    \lipsum[1]
-    
-    \section{Blah blah blah}
-    \lipsum[1]
-    
-    \section{Blah blah blah}
-    \lipsum[1]
-
-
-
-    \chapter{The End}
-    \lipsum[1]
-    
-    \section{Blah blah blah}
-    \lipsum[1]
+    \begin{itemize}
+    \item Package Tree: \textbf{aosc-os-abbs}, on the \icode{retro} branch.
+        \begin{itemize}
+            \item This means that AOSC OS/Retro will also use systemd as the default init system.
+                {\itshape Now before you start yelling, systemd runs fine on an IBM Palm Top PC110
+                with a 33MHz 80486SL processor, 20MiB of RAM, and a 2GiB CF card. We've tested it to be sure.}
+        \end{itemize}
+    \item AOSC OS Core will be shared, but only updates based on what are synced to the retro branch. See Maintenance Schedule.
+    \item Packaging/Maintenance Tools\ldots
+        \begin{itemize}
+            \item Autobuild3, for automatic packaging from Autobuild3 manifests.
+            \item ACBS, for tree-based Autobuild3 manifest management and packaging.
+            \item Ciel, for containerised packaging.
+            \item Various scriptlets, shared with AOSC OS.
+        \end{itemize}
+    \end{itemize}
     
 
+    \section{Dependencies}
 
-    \section{Afternotes}
-    \lipsum[1]
+    As AOSC OS/Retro targets storage and performance constraint devices, unlike its mainline counterpart,
+    AOSC OS/Retro will ship packages with minimal optional feature enabled.
+    Listed below are a few general rules to be followed\ldots
+
+    \begin{itemize}
+        \item Base distribution (containing \icode{admin-base}, \icode{boot-base}, \icode{core-base}, \icode{editor-base},
+            \icode{kernel-base}, \icode{network-base}, \icode{systemd-base}, \icode{util-base}, and \icode{web-base})
+            must not introduce dependency to Python (\icode{python-2}, \icode{python-3}).
+        \item Language bindings (Java, Perl, Python, etc.) must not be enabled by default,
+            unless required by another package essential to the distribution.
+        \item Glibc is \textit{only} to ship with the \icode{C} and \icode{C.UTF-8} locales pre-generated,
+            with others generated by user configuration (defined in \icode{/etc/locale.gen} but commented by default).
+        \item Strip down \textit{all optional} dependencies, unless such package is from the Core,
+            or otherwise discussed on a case-by-case basis.
+        \item \textit{All packages} are to be built with Link-Time Optimisation enabled,
+            unless such optimisation leads to build failure (to be reported to upstream).
+        \item Non-performance critical applications are to be built with the \icode{-Os}
+            (\icode{AB\_FLAGS\_OS=1} in \icode{autobuild/defines}) optimisation level to conserve space.
+        \item Manpages and Texinfo documents will be shipped, but all other forms of documentation
+            (examples, HTML, gtk-doc, etc.) will be omitted.
+        \item Linux Kernel must boot \textit{without} Dracut, unless used on a RAID setup.
+            Dracut is \textit{not} shipped with default distributions.
+    \end{itemize}
+
+    \section{Distribution Features}
+
+    AOSC OS/Retro will ship in several flavours, Base, X11, Server, and Trinity.
+    All flavours will come fully localised (once locale is enabled by the end-user) as well as a generic,
+    non-optimised Linux Kernel for each architecture.
+
+    \begin{itemize}
+        \item The Base flavour contains a minimal bootable and non-graphical system with tools essential to system management, basic text editing (GNU Nano), networking (wired and wireless), and basic user functions (compression, documentation browser, pager, power conservation, system monitoring, etc.).
+        \item The X11 flavour contains a minimal bootable and graphical system, with all components listed above for the Base flavour, added with an X11-based desktop environment and other graphical utilities.
+        \item The Server flavour contains a minimal bootable and server-oriented system, with all components listed above for the Base flavour, added with tools and utilities for server-oriented applications.
+        \item The Trinity flavour contains a fully-featured bootable and graphical system, with all components listed above for the Base flavour, added with a fully-featured desktop interface powered by the Trinity Desktop Environment.
+        \item Network management on all flavours will be provided with NetworkManager, and graphical systems will come with NetSurf as the default Web browser.
+    \end{itemize}
+
+    Extra packages, such as Firefox and more feature-complete desktop environments will be available from the community repository, however, hardware requirement checks will be enforced based on processor and memory installed on your AOSC OS/Retro device (i.e., package installation will be aborted when attempting to install Firefox on a computer without SSE2 SIMD support).
+
+    \section{Maintenance Schedules}
+
+    AOSC OS/Retro will be maintained on the \icode{retro} branch,
+    sharing the same package tree with the mainline distribution.
+    However, in interest of both the maintainer's reasonable maintenance effort,
+    as well as the longevity and usability of the target devices,
+    AOSC OS/Retro will update on an \textit{annual schedule}.
+
+    After the first update cycle of a year, the retro branch will perform a dual-direction
+    merge with the \icode{stable} branch from the mainline distribution (\icode{stable} => \icode{retro}, then \icode{retro} => \icode{stable}).
+    After which, no further merge or reverse merge will be allowed.
+    Package versions in the \icode{retro} branch will remain constant unless\ldots
+
+    \begin{itemize}
+        \item Any bugfixes are found to be necessary by users or developers.
+        \item A security update is made available that requires a version update.
+            If necessary, changes could be cherry-picked from the \icode{stable} branch.
+    \end{itemize}
+
+    At the end of each annual cycle, a new distribution tarball will be made available on the downloads page, as well as an update CD image containing a local repository containing all system updates. A full AOSC OS/Retro repository will also be provided in forms of a tarball or a set of CD/DVD image.
+
+
+
+    \chapter{Goals}
+
+    AOSC OS/Retro will be maintained with a few goals in mind, relating to system performance, storage requirements, and peripheral support. This chapter will also serve to outline AOSC OS/Retro's system requirements.
+
+    This chapter will then be split into sections, containing requirements and metrics shared and specific to each of our target architectures.
+
+    \section{Common Metrics}
+
+    \begin{compactitem}
+        \item AOSC OS/Retro's Base flavour should install onto a 810MiB hard disk drive (commonly found with 486-class systems), while the X11 flavour should install onto a 1.2GB drive (commonly found on Intel x86 computers from ~1996).
+            \begin{compactitem}
+                \item After the system is installed, there should be enough space for a 64MiB swap area and future system updates (assuming one package is cached onto the hard disk at a time, using the update CD).
+                \item Users should expect to conserve ~100MiB of hard disk space for network- or internet-based system updates.
+            \end{compactitem}
+        \item AOSC OS/Retro should not require any form of network access for normal usage, assuming the user has obtained a copy of local repository.
+        \item AOSC OS/Retro should support common ISA/EISA (or PCMCIA), PCI (or CardBus), PCI Express (or ExpressCard), SCSI, as well as USB, PS/2, Serial and Parallel peripherals.
+        \item AOSC OS/Retro should support dial-up, 10/100/1000Mbps Ethernet, as well as 802.11a/b/g/n/ac/ax wireless connections.
+        \item AOSC OS/Retro should boot from IDE/EIDE/CE-ATA/SATA/SCSI-based hard disk drives. AOSC OS/Retro may boot from USB, optical media, or other forms of external/removable storage, but this will not officially supported.
+    \end{compactitem}
+
+
+
+
+
+    \chapter{System Requirements}
+
+    \section{General Advice}
+
+    In order to ensure an acceptable and productive AOSC OS/Retro experience, we recommend the following when considering installation of AOSC OS/Retro on your devices:
+
+    \begin{compactitem}
+        \item Minimum requirements are here for technicality's sake, it does not necessarily mean that AOSC OS/Retro would run with sufficient performance on said configuration. We have included specific advice for each architecture.
+        \item Flash-based storage devices, such as bridged CompactFlash cards (connected via IDE, SCSI, etc.) will significantly improve system performance on devices from the 1990s. CompactFlash cards and adapters are affordable, consumes less power, and lowers overall system heat output when compared with the older, (now) frequently failing mechanical IDE hard disk drives.
+        \item Control your expectations. While AOSC OS/Retro runs well on computers from well over 20 years ago, they won't run Crysis or even play YouTube videos. We advise that you plan your applications wisely, especially on devices that are severely performance limited.
+    \end{compactitem}
+
+
+    \section{x86/i486 Systems}
+
+    \subsection{Base \& Server}
+
+    On the 32-bit x86 architecture, AOSC OS/Retro Base and Server requires the following system components\ldots
+
+    \begin{compactitem}
+        \item Processor: Intel 80486 or compatible, FPU (Floating Point Unit) not required.
+        \item System Bus: ISA, EISA, PCI, or PCI Express based system devices. MCA (Micro Channel Architecture) not supported.
+        \item RAM: 12MiB (32MiB swap).
+        \item Storage: 810MB (~514MiB).
+            \begin{compactitem}
+                \item (Ultra) DMA via PCI Bus Mastering will significantly improve system performance.
+            \end{compactitem}
+        \item Input Device: PS/2 or Serial Port Keyboard. Mouse not required.
+        \item Display: VGA or compatible, or serial terminal.
+    \end{compactitem}
+
+    \subsection{X11}
+
+    AOSC OS/Retro X11 requires the following system components\ldots
+
+    \begin{compactitem}
+    \item Processor: Intel 80486 or compatible, FPU (Floating Point Unit) not required.
+        \begin{compactitem}
+            \item Intel Pentium II 233MHz, AMD K6, Cyrix MediaGX, Via C7 or above will significantly improve graphical experience.
+            \item Intel Pentium III 500MHz, AMD K6-II/III or above recommended for video playback using MPlayer.
+        \end{compactitem}
+    \item System Bus: ISA, EISA, PCI, or PCI Express based system devices. MCA (Micro Channel Architecture) not supported.
+    \item RAM: 48MiB (64MiB swap).
+        \begin{compactitem}
+            \item 128MiB or above recommended for Internet browsing.
+        \end{compactitem}
+    \item Storage: 1.2GB (~1141MiB).
+        \begin{compactitem}
+            \item 4.0GB (~3814MiB) recommended for local multimedia storage.
+            \item (Ultra) DMA via PCI Bus Mastering will significantly improve system performance.
+        \end{compactitem}
+    \item Input Device: PS/2 or Serial Port Keyboard and Mouse.
+        \begin{compactitem}
+            \item Touchscreen will be supported via I2C, Serial, or USB connections.
+        \end{compactitem}
+    \item Display: VGA or compatible.
+        \begin{compactitem}
+            \item ISA/EISA video cards are not recommended, VESA Local Bus will significantly improve video performance.
+            \item PCI and PCI Express video cards recommended, especially those with OpenGL 2.1 support (often found after ~2002), as this will allow for GPU-based video playback acceleration.
+        \end{compactitem}
+    \end{compactitem}
+
+    \subsection{Trinity}
+
+    AOSC OS/Retro Trinity requires the following system components\ldots
+
+    \begin{compactitem}
+    \item Processor: Intel Pentium II 233MHz, AMD K6, Cyrix MediaGX, Via C7 or above.
+        \begin{compactitem}
+        \item Intel Pentium III 500MHz, AMD K6-II/III or above recommended.
+        \end{compactitem}
+    \item System Bus: ISA, EISA, PCI, or PCI Express based system devices. MCA (Micro Channel Architecture) not supported.
+    \item RAM: 256MiB (256MiB swap).
+        \begin{compactitem}
+        \item 512MiB or above recommended for Internet browsing.
+        \end{compactitem}
+    \item Storage: 3.2GB (~3052MiB).
+        \begin{compactitem}
+        \item 8GB (~7629MiB) recommended for local multimedia storage.
+        \item (Ultra) DMA via PCI Bus Mastering will significantly improve system performance.
+        \end{compactitem}
+    \item Input Device: PS/2 or Serial Port Keyboard and Mouse.
+        \begin{compactitem}
+        \item Touchscreen will be supported via I2C, Serial, or USB connections.
+        \end{compactitem}
+    \item Display: VGA or compatible.
+        \begin{compactitem}
+        \item PCI and PCI Express video cards recommended, especially those with OpenGL 2.1 support (often found after ~2002), as this will allow for GPU-based video playback acceleration.
+        \end{compactitem}
+    \end{compactitem}
+
+
+    \section{PowerPC Systems}
+
+    All AOSC OS/Retro flavours should run on all supported devices on this architecture - that is, PowerPC-based Apple Macintosh computers with New World ROM support. If you would like to run Trinity Desktop Environment on your PowerPC devices, you are advised to have at least 256MiB of RAM installed.
+
+    \begin{compactitem}
+    \item Portables...
+        \begin{compactitem}
+        \item PowerBook G3 "Lombard" and "Pismo" models.
+        \item All iBook G3, iBook G4, PowerBook G4 models.
+        \end{compactitem}
+    \item Desktops...
+        \begin{compactitem}
+        \item Power Macintosh G3 "Blue and White" models.
+        \item All Power Macintosh G4 and G5 models.
+        \item All iMac G3 and G4 models.
+        \item All eMac models.
+        \item All G4-based Mac Mini models.
+        \item All G4- and G5-based Xserve models.
+        \end{compactitem}
+    \end{compactitem}
+
+    \section{Loongson 2F Systems}
+
+    All AOSC OS/Retro flavours should run reasonably well on Loongson 2F-based devices (with performance close to an Intel Pentium III Coppermine). Currently, we only support the Lemote YeeLoong 8089 family of laptops.
+
+    For storage requirements, you may refer to the x86 section above.
+
+    \section{ARMv4 Systems}
+
+    For ARMv4, AOSC OS/Retro supports a limited range of devices. Specifically the HP Jornada 710/720/728/820 Windows CE handheld computers. AOSC OS/Retro Base and Server should run on any of the supported devices with their standard RAM capacity (32MiB or 64MiB), X11 requires that you install a 64MiB RAM capacity ROM card to ensure acceptable performance. Trinity Desktop Environment is not supported, for obvious performance reasons.
+
+    For storage requirements, you may refer to the x86 section above.
+
+    \section{ARMv6 Systems}
+
+    For ARMv6, AOSC OS/Retro currently support only the Raspberry Pi 1 models with 256MiB - 512MiB of RAM. All AOSC OS/Retro flavours should run reasonably well on these devices.
+
+    For storage requirements, you may refer to the x86 section above.
+
+    \section{ARMv7 Systems}
+
+    For ARMv7, AOSC OS/Retro currently support only the Raspberry Pi 2 models, with Allwinner device support planned. All AOSC OS/Retro flavours should run reasonably well on these devices.
+
+    For storage requirements, you may refer to the x86 section above.
+
+    % \chapter{Introduction}
+    % \section{114514}
+
+
+    \chapter{Afternotes}
     
-    \lipsum[1]
-
-
-
-    \chapter{Appendix I: Copyright}
+    \section{Appendix I: Copyright}
 
     This manual is published with the \underline{CC BY 4.0} license.
 

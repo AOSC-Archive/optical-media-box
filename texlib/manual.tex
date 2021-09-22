@@ -1,9 +1,9 @@
 %!TEX TS-program = xelatex
 %!TEX encoding = UTF-8 Unicode
 
-\documentclass[b6paper,twosided,11pt]{book}
+\documentclass[a5paper,twosided,11pt]{book}
 
-\usepackage[b6paper,hmargin=9mm,tmargin=10mm,bmargin=20mm]{geometry}
+\usepackage[a5paper,hmargin=9mm,tmargin=10mm,bmargin=20mm]{geometry}
 \usepackage{calc}
 \usepackage{amsmath,xltxtra,xunicode}
 \usepackage{titlesec}
@@ -16,6 +16,7 @@
 \XeTeXlinebreakskip = 0pt plus 1pt 
 
 % =========================================
+\usepackage{soul}
 \usepackage{lipsum}
 \usepackage{lastpage}
 \usepackage{everypage}
@@ -39,11 +40,11 @@
 \usepackage{tcolorbox}
 \setmainfont{Source Han Serif CN}
 \setromanfont{Source Han Serif CN}
-\setsansfont{Source Han Serif CN}
+\setsansfont{Source Han Sans CN}
 \setmonofont{Source Code Pro}
 \setCJKmainfont{Source Han Serif CN}
 \setCJKromanfont{Source Han Serif CN}
-\setCJKsansfont{Source Han Serif CN}
+\setCJKsansfont{Source Han Sans CN}
 \setCJKmonofont{Source Han Sans CN}
 \title{AOSC OS/Retro  User Manual}
 \author{Various Authors at AOSC}
@@ -56,6 +57,7 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{4pt}
 \setlength{\baselineskip}{12pt}
+\tabulinesep=6pt
 % END CORPORATION CONFIG
 % =========================================
 
@@ -79,7 +81,8 @@
     \fancyhf{}
     \fancyfoot{}
     \fancyfoot[LE,RO]{\small\ttfamily\thepage}
-    \fancyfoot[LO,RE]{\small\sffamily{\doctitleA}\hspace{1em}{\doctitleB}}
+    % \fancyfoot[LO,RE]{\small\sffamily{\doctitleA}\hspace{1em}{\doctitleB}}
+    \fancyfoot[LO,RE]{\small\sffamily{\doctitleA}: {\doctitleB}}
 }
 
 
@@ -90,11 +93,14 @@
 \newcommand{\tpCopyright}[0]{Copyright {\copyright} 2021 Various Authors.}
 \newcommand{\tpLicense}[1]{Published under #1 License.}
 
-\newcommand{\makecoverpage}[0]{
+\newcommand{\makecoverpage}[0]{{
     \raggedbottom
     \RaggedRight
     \pagestyle{empty}
-    \sffamily\bfseries\huge
+    \Huge
+    \fontspec{Source Han Serif CN Heavy}
+    \CJKfontspec{Source Han Serif CN Heavy}
+
 
     \hspace{1pt}\vspace{40pt}
 
@@ -105,14 +111,15 @@
     \vfill
 
     \small\sffamily\mdseries
-        \tpVersion 0.1.0-pre2\\
+    \baselineskip=16pt
+        \tpVersion 0.1.0-pre3\\
         \tpCopyright\\
         \tpLicense{\underline{CC BY 4.0}}
-    
+
     \cleardoublepage
     \setcounter{page}{1}
     \rmfamily\mdseries\normalsize
-}
+}}
 
 
 
@@ -127,3 +134,9 @@
         {\thechapter}. {#1}
     }\par\vspace{20pt}
 }
+
+
+
+
+\setulcolor{gray}
+\newcommand{\icode}[1]{{\ttfamily{\ul{#1}}}}

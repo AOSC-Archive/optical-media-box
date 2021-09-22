@@ -27,7 +27,7 @@ push:
 
 manual:
 	./tex.sh manuals/manual-retro-en.tex
-	./tex.sh manuals/manual-retro-zh.tex
+	# ./tex.sh manuals/manual-retro-zh.tex
 
 box:
 	./tex.sh boxes/box-retro-en.tex
