@@ -12,8 +12,8 @@ help:
 	@echo "Pushing a tag:       make push"
 
 all:
-	./tex.sh manuals/manual-retro-en.tex
-	./tex.sh manuals/manual-retro-zh.tex
+	make manual
+	make box
 
 tar:
 	touch AOSC_OS-optical-media-box.tar.xz
@@ -33,7 +33,7 @@ box:
 	./tex.sh boxes/box-retro-en.tex
 	./tex.sh boxes/box-retro-side-en.tex
 	pdfunite _dist/boxes/box-retro-en.pdf _dist/boxes/box-retro-side-en.pdf _dist/boxes/box-retro-all-en.pdf
-	gs -sDEVICE=jpeg -o _dist/boxes/box-retro-all-en-%d.jpg -r600 _dist/boxes/box-retro-all-en.pdf
+	# gs -sDEVICE=jpeg -o _dist/boxes/box-retro-all-en-%d.jpg -r600 _dist/boxes/box-retro-all-en.pdf
 
 # en:
 # 	./tex.sh manuals/manual-retro-en.tex

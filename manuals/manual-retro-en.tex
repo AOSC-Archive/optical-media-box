@@ -1,7 +1,12 @@
 \input{texlib/manual.tex}
 
 \begin{document}
+    \baselineskip=15pt
+    \sloppy
     \raggedbottom
+    \RaggedRight
+    \overfullrule=10pt
+
     \makecoverpage
 
     \setcounter{tocdepth}{1}
@@ -161,17 +166,17 @@
 
     \section{Common Metrics}
 
-    \begin{compactitem}
+    \begin{itemize}
         \item AOSC OS/Retro's Base flavour should install onto a 810MiB hard disk drive (commonly found with 486-class systems), while the X11 flavour should install onto a 1.2GB drive (commonly found on Intel x86 computers from ~1996).
-            \begin{compactitem}
+            \begin{itemize}
                 \item After the system is installed, there should be enough space for a 64MiB swap area and future system updates (assuming one package is cached onto the hard disk at a time, using the update CD).
                 \item Users should expect to conserve ~100MiB of hard disk space for network- or internet-based system updates.
-            \end{compactitem}
+            \end{itemize}
         \item AOSC OS/Retro should not require any form of network access for normal usage, assuming the user has obtained a copy of local repository.
         \item AOSC OS/Retro should support common ISA/EISA (or PCMCIA), PCI (or CardBus), PCI Express (or ExpressCard), SCSI, as well as USB, PS/2, Serial and Parallel peripherals.
         \item AOSC OS/Retro should support dial-up, 10/100/1000Mbps Ethernet, as well as 802.11a/b/g/n/ac/ax wireless connections.
         \item AOSC OS/Retro should boot from IDE/EIDE/CE-ATA/SATA/SCSI-based hard disk drives. AOSC OS/Retro may boot from USB, optical media, or other forms of external/removable storage, but this will not officially supported.
-    \end{compactitem}
+    \end{itemize}
 
 
 
@@ -183,11 +188,19 @@
 
     In order to ensure an acceptable and productive AOSC OS/Retro experience, we recommend the following when considering installation of AOSC OS/Retro on your devices:
 
-    \begin{compactitem}
-        \item Minimum requirements are here for technicality's sake, it does not necessarily mean that AOSC OS/Retro would run with sufficient performance on said configuration. We have included specific advice for each architecture.
-        \item Flash-based storage devices, such as bridged CompactFlash cards (connected via IDE, SCSI, etc.) will significantly improve system performance on devices from the 1990s. CompactFlash cards and adapters are affordable, consumes less power, and lowers overall system heat output when compared with the older, (now) frequently failing mechanical IDE hard disk drives.
-        \item Control your expectations. While AOSC OS/Retro runs well on computers from well over 20 years ago, they won't run Crysis or even play YouTube videos. We advise that you plan your applications wisely, especially on devices that are severely performance limited.
-    \end{compactitem}
+    \begin{itemize}
+        \item Minimum requirements are here for technicality's sake,
+            it does not necessarily mean that AOSC OS/Retro would run with sufficient performance
+            on said configuration. We have included specific advice for each architecture.
+        \item Flash-based storage devices, such as bridged CompactFlash cards
+            (connected via IDE, SCSI, etc.) will significantly improve system performance on devices from the 1990s.
+            CompactFlash cards and adapters are affordable, consumes less power,
+            and lowers overall system heat output when compared with the older,
+            (now) frequently failing mechanical IDE hard disk drives.
+        \item Control your expectations. While AOSC OS/Retro runs well on computers from well over 20 years ago,
+            they won't run Crysis or even play YouTube videos. We advise that you plan your applications wisely,
+            especially on devices that are severely performance-limited.
+    \end{itemize}
 
 
     \section{x86/i486 Systems}
@@ -196,99 +209,99 @@
 
     On the 32-bit x86 architecture, AOSC OS/Retro Base and Server requires the following system components\ldots
 
-    \begin{compactitem}
+    \begin{itemize}
         \item Processor: Intel 80486 or compatible, FPU (Floating Point Unit) not required.
         \item System Bus: ISA, EISA, PCI, or PCI Express based system devices. MCA (Micro Channel Architecture) not supported.
         \item RAM: 12MiB (32MiB swap).
-        \item Storage: 810MB (~514MiB).
-            \begin{compactitem}
+        \item Storage: 810MB ({\textasciitilde}514MiB).
+            \begin{itemize}
                 \item (Ultra) DMA via PCI Bus Mastering will significantly improve system performance.
-            \end{compactitem}
+            \end{itemize}
         \item Input Device: PS/2 or Serial Port Keyboard. Mouse not required.
         \item Display: VGA or compatible, or serial terminal.
-    \end{compactitem}
+    \end{itemize}
 
     \subsection{X11}
 
     AOSC OS/Retro X11 requires the following system components\ldots
 
-    \begin{compactitem}
+    \begin{itemize}
     \item Processor: Intel 80486 or compatible, FPU (Floating Point Unit) not required.
-        \begin{compactitem}
+        \begin{itemize}
             \item Intel Pentium II 233MHz, AMD K6, Cyrix MediaGX, Via C7 or above will significantly improve graphical experience.
             \item Intel Pentium III 500MHz, AMD K6-II/III or above recommended for video playback using MPlayer.
-        \end{compactitem}
+        \end{itemize}
     \item System Bus: ISA, EISA, PCI, or PCI Express based system devices. MCA (Micro Channel Architecture) not supported.
     \item RAM: 48MiB (64MiB swap).
-        \begin{compactitem}
+        \begin{itemize}
             \item 128MiB or above recommended for Internet browsing.
-        \end{compactitem}
+        \end{itemize}
     \item Storage: 1.2GB (~1141MiB).
-        \begin{compactitem}
+        \begin{itemize}
             \item 4.0GB (~3814MiB) recommended for local multimedia storage.
             \item (Ultra) DMA via PCI Bus Mastering will significantly improve system performance.
-        \end{compactitem}
+        \end{itemize}
     \item Input Device: PS/2 or Serial Port Keyboard and Mouse.
-        \begin{compactitem}
+        \begin{itemize}
             \item Touchscreen will be supported via I2C, Serial, or USB connections.
-        \end{compactitem}
+        \end{itemize}
     \item Display: VGA or compatible.
-        \begin{compactitem}
+        \begin{itemize}
             \item ISA/EISA video cards are not recommended, VESA Local Bus will significantly improve video performance.
             \item PCI and PCI Express video cards recommended, especially those with OpenGL 2.1 support (often found after ~2002), as this will allow for GPU-based video playback acceleration.
-        \end{compactitem}
-    \end{compactitem}
+        \end{itemize}
+    \end{itemize}
 
     \subsection{Trinity}
 
     AOSC OS/Retro Trinity requires the following system components\ldots
 
-    \begin{compactitem}
+    \begin{itemize}
     \item Processor: Intel Pentium II 233MHz, AMD K6, Cyrix MediaGX, Via C7 or above.
-        \begin{compactitem}
+        \begin{itemize}
         \item Intel Pentium III 500MHz, AMD K6-II/III or above recommended.
-        \end{compactitem}
+        \end{itemize}
     \item System Bus: ISA, EISA, PCI, or PCI Express based system devices. MCA (Micro Channel Architecture) not supported.
     \item RAM: 256MiB (256MiB swap).
-        \begin{compactitem}
+        \begin{itemize}
         \item 512MiB or above recommended for Internet browsing.
-        \end{compactitem}
+        \end{itemize}
     \item Storage: 3.2GB (~3052MiB).
-        \begin{compactitem}
+        \begin{itemize}
         \item 8GB (~7629MiB) recommended for local multimedia storage.
         \item (Ultra) DMA via PCI Bus Mastering will significantly improve system performance.
-        \end{compactitem}
+        \end{itemize}
     \item Input Device: PS/2 or Serial Port Keyboard and Mouse.
-        \begin{compactitem}
+        \begin{itemize}
         \item Touchscreen will be supported via I2C, Serial, or USB connections.
-        \end{compactitem}
+        \end{itemize}
     \item Display: VGA or compatible.
-        \begin{compactitem}
+        \begin{itemize}
         \item PCI and PCI Express video cards recommended, especially those with OpenGL 2.1 support (often found after ~2002), as this will allow for GPU-based video playback acceleration.
-        \end{compactitem}
-    \end{compactitem}
+        \end{itemize}
+    \end{itemize}
 
 
     \section{PowerPC Systems}
 
     All AOSC OS/Retro flavours should run on all supported devices on this architecture - that is, PowerPC-based Apple Macintosh computers with New World ROM support. If you would like to run Trinity Desktop Environment on your PowerPC devices, you are advised to have at least 256MiB of RAM installed.
 
-    \begin{compactitem}
+    \begin{itemize}
     \item Portables...
-        \begin{compactitem}
+        \begin{itemize}
         \item PowerBook G3 "Lombard" and "Pismo" models.
         \item All iBook G3, iBook G4, PowerBook G4 models.
-        \end{compactitem}
+        \end{itemize}
     \item Desktops...
-        \begin{compactitem}
+        \begin{itemize}
         \item Power Macintosh G3 "Blue and White" models.
         \item All Power Macintosh G4 and G5 models.
         \item All iMac G3 and G4 models.
         \item All eMac models.
         \item All G4-based Mac Mini models.
         \item All G4- and G5-based Xserve models.
-        \end{compactitem}
-    \end{compactitem}
+        \end{itemize}
+    \end{itemize}
 
     \section{Loongson 2F Systems}
 
