@@ -16,12 +16,27 @@ List of manuals:
 - Retro, ZH
 
 ```
-make manuals
+make manual
 ```
 
 ### Boxes
 
-// TODO
+List of boxes:
+
+- box-retro-en
+- box-retro-zh
+
+Each box has
+
+- 2 source files:
+  - `box-retro-LANG.tex`
+  - `box-retro-side-LANG.tex`
+- 3 output files:
+  - `box-retro-LANG.pdf`
+  - `box-retro-side-LANG.pdf`
+  - `box-retro-all-LANG.pdf`
+
+For compatibility purposes, JPEG outputs `box-retro-all-LANG-%d.jpg` are added along.
 
 ## Building
 
