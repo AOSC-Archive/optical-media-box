@@ -18,9 +18,9 @@ all:
 tar:
 	touch AOSC_OS-optical-media-box.tar.xz
 	rm AOSC_OS-optical-media-box.tar.xz
-	tar cvf AOSC_OS-optical-media-box.tar.xz --exclude tex-tmp _dist
+	tar cvf AOSC_OS-optical-media-box.tar.xz   --exclude tex-tmp   _dist
 
-push:
+pushtag:
 	@echo "[WARNING] This action could push unwanted refs."
 	@echo "Pushing tags..."
 	git push origin '*'
@@ -33,7 +33,7 @@ box:
 	./tex.sh boxes/box-retro-en.tex
 	./tex.sh boxes/box-retro-side-en.tex
 	pdfunite _dist/boxes/box-retro-en.pdf _dist/boxes/box-retro-side-en.pdf _dist/boxes/box-retro-all-en.pdf
-	which gs -sDEVICE=jpeg -o _dist/boxes/box-retro-all-en-%d.jpg -r600 _dist/boxes/box-retro-all-en.pdf
+	gs -sDEVICE=jpeg -o _dist/boxes/box-retro-all-en-%d.jpg -r600 _dist/boxes/box-retro-all-en.pdf
 
 # en:
 # 	./tex.sh manuals/manual-retro-en.tex

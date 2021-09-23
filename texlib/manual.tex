@@ -1,7 +1,7 @@
 %!TEX TS-program = xelatex
 %!TEX encoding = UTF-8 Unicode
 
-\documentclass[a5paper,twosided,11pt]{book}
+\documentclass[a5paper,twosided,12pt]{book}
 
 \usepackage[a5paper,hmargin=9mm,tmargin=10mm,bmargin=20mm]{geometry}
 \usepackage{calc}
@@ -42,6 +42,8 @@
 \setmainfont{Source Serif Pro}
 \setromanfont{Source Serif Pro}
 \setsansfont{Source Sans Pro}
+% \setsansfont{Cuprum}
+\setsansfont{IBM Plex Sans}
 \setmonofont{Source Code Pro}
 \setCJKmainfont{Source Han Serif CN}
 \setCJKromanfont{Source Han Serif CN}
@@ -101,7 +103,7 @@
     \AddToShipoutPictureBG*{%
         % Two major boxes
         \put(-31mm,0mm){%
-            \includegraphics[width=210mm]{retrologo-skeleton_20p.pdf}
+            \includegraphics[width=210mm]{retrologo-skeleton_10p.pdf}
         }%        
     }
 
@@ -159,9 +161,11 @@
 }}
 
 \newcommand{\makebackcoverpage}[0]{{
+    \hspace{1pt}\vfill
+
     \small\sffamily\mdseries
     \baselineskip=16pt
-        \tpVersion\docversion\\
+        {\tpVersion}{ }{\docversion}\\
         \tpCopyright\\
         \tpLicense{\underline{CC BY 4.0}}
 }}
@@ -175,7 +179,7 @@
     \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}#1}
     \chaptermark{#1}
     {
-        \sffamily\huge\bfseries
+        \sffamily\huge\bfseries\scshape
         {\thechapter}. {#1}
     }\par\vspace{20pt}
 }
