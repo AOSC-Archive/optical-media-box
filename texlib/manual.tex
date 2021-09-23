@@ -39,9 +39,9 @@
 \usepackage{multicol}
 \usepackage{ragged2e}
 \usepackage{tcolorbox}
-\setmainfont{Source Han Serif CN}
-\setromanfont{Source Han Serif CN}
-\setsansfont{Source Han Sans CN}
+\setmainfont{Source Serif Pro}
+\setromanfont{Source Serif Pro}
+\setsansfont{Source Sans Pro}
 \setmonofont{Source Code Pro}
 \setCJKmainfont{Source Han Serif CN}
 \setCJKromanfont{Source Han Serif CN}
@@ -73,6 +73,7 @@
 % =========================================
 
 
+\graphicspath{{/home/neruthes/EWS/AOSC/optical-media-box/img}}
 
 
 % Headers & Footers
@@ -88,38 +89,81 @@
 
 
 % CoverPage
+\newcommand{\docversion}[0]{0.1.0-pre3}
 \newcommand{\doctitleA}[0]{AOSC OS/Retro}
-\newcommand{\doctitleB}[0]{User Manual}
+\newcommand{\doctitleB}[0]{USER MANUAL}
 \newcommand{\tpVersion}[0]{Version}
 \newcommand{\tpCopyright}[0]{Copyright {\copyright} 2021 Various Authors.}
 \newcommand{\tpLicense}[1]{Published under #1 License.}
 
 \newcommand{\makecoverpage}[0]{{
+
+    \AddToShipoutPictureBG*{%
+        % Two major boxes
+        \put(-31mm,0mm){%
+            \includegraphics[width=210mm]{retrologo-skeleton_20p.pdf}
+        }%        
+    }
+
+    % Start real content
     \raggedbottom
     \RaggedRight
     \pagestyle{empty}
-    \Huge
     \fontspec{Source Han Serif CN Heavy}
     \CJKfontspec{Source Han Serif CN Heavy}
 
+    \center
 
-    \hspace{1pt}\vspace{140pt}
 
-    \doctitleA
+    \hspace{1pt}\vspace{120pt}
 
-    \doctitleB
+
+    {
+        \Huge
+        \sffamily
+        % \fontspec{Linux Biolinum O}\bfseries
+        \fontspec{Cuprum}\bfseries
+        \doctitleB
+    }
+
+    
+
+    \vspace{10pt}{
+        \rmfamily\color{black!75!white}\normalsize\mdseries
+
+        Version \docversion\\
+        September 2021
+    }
 
     \vfill
 
-    \small\sffamily\mdseries
-    \baselineskip=16pt
-        \tpVersion 0.1.0-pre3\\
-        \tpCopyright\\
-        \tpLicense{\underline{CC BY 4.0}}
+    {
+        % \fontspec{Times New Roman}
+        % \fontspec{Linux Biolinum O}
+        \fontspec{Source Han Serif CN Heavy}
+        \bfseries
+        \huge
+        \doctitleA
+
+        \vspace{10pt}
+        {\sffamily\large\fontspec{Cuprum}\mdseries
+        Enjoying AOSC OS on Your Retro Devices}
+    }
+    
 
     \cleardoublepage
     \setcounter{page}{1}
     \rmfamily\mdseries\normalsize
+
+    
+}}
+
+\newcommand{\makebackcoverpage}[0]{{
+    \small\sffamily\mdseries
+    \baselineskip=16pt
+        \tpVersion\docversion\\
+        \tpCopyright\\
+        \tpLicense{\underline{CC BY 4.0}}
 }}
 
 

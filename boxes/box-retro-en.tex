@@ -20,26 +20,43 @@
     %     }%
     % }
 
-    \color{white}
-    \pagecolor{black}
+    % \color{white}
+    % \pagecolor{black}
 
     % \AddToShipoutPictureFG*{\put(12mm,60mm){\begin{minipage}{170mm}
-        {\Huge\fontspec{Source Han Serif CN Heavy}\fontsize{40pt}{50pt}\selectfont\doctitleA}
+    {
+        \center
+
+        % {\Huge\fontspec{Source Han Serif CN Heavy}\fontsize{51pt}{56pt}\selectfont\doctitleA}
+        {\Huge\fontspec{Source Han Serif CN Medium}\fontsize{51pt}{56pt}\selectfont\doctitleA}
+
+        \vspace{10pt}
+        \includegraphics[width=130mm]{retro-logo.png}
 
         \vspace{15pt}
-        {\fontspec{Liberation Sans}\huge\mdseries\itshape{\tpOptiInstMedia}}
+        {
+            % \fontspec{Liberation Sans}
+            \fontspec{Source Serif Pro}
+            \LARGE
+            \itshape
+            % \tpOptiInstMedia
+            Enjoying AOSC OS on Your Retro Devices
+        }
         
-        \vspace{40pt}
+        \vspace{10pt}
         \large
         {\sffamily Release Version 2021 October}
 
-        \includegraphics[width=100mm]{retro-logo.png}
+        % {\itshape{Enjoying AOSC OS on Your Retro Devices}}
 
-        \vspace{40pt}
-        \mdseries\sffamily
-        Available for 7 architectures:\vspace{3pt}
 
-        \color{white}\bfseries
+        \vspace{20pt}
+        \mdseries
+        \sffamily
+        % Available for 7 architectures:\vspace{3pt}
+
+        % \color{white}
+        % \bfseries
         {i486}\hspace{3pt}·\hspace{3pt}
         {ARMv4}\hspace{3pt}·\hspace{3pt}
         {ARMv6}\hspace{3pt}·\hspace{3pt}
@@ -53,17 +70,17 @@
         % {Loongson 2F}\hspace{5pt}
         % {PowerPC (32/64)}
 
-
+    }
     % \end{minipage}}}
 
     \pagebreak
 
 
 
-    \color{white}
+    % \color{white}
     % \begin{tcolorbox}[width=80mm,colframe=white,colback=black,toprule=0.5pt,bottomrule=0.5pt,leftrule=0.5pt,rightrule=0.5pt]
         % \begin{minipage}[t]{70mm}
-            \color{white}
+            % \color{white}
 
             \vspace{10pt}
             {\large\bfseries \tFeatures}\vspace{4pt}
