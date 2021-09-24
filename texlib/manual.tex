@@ -18,6 +18,7 @@
 % =========================================
 \usepackage[none]{hyphenat}
 \usepackage{soul}
+\usepackage[hidelinks]{hyperref}
 \usepackage{lipsum}
 \usepackage{lastpage}
 \usepackage{everypage}
@@ -41,15 +42,19 @@
 \usepackage{tcolorbox}
 \setmainfont{Source Serif Pro}
 \setromanfont{Source Serif Pro}
-\setsansfont{Source Sans Pro}
+% \setromanfont{Times New Roman}
+% \setromanfont{Liberation Serif}
+% \setromanfont{Latin Modern Roman}
+\setromanfont{Inria Serif}
+% \setsansfont{Source Sans Pro}
 % \setsansfont{Cuprum}
 \setsansfont{IBM Plex Sans}
-\setmonofont{Source Code Pro}
+\setmonofont{JetBrains Mono NL}
 \setCJKmainfont{Source Han Serif CN}
 \setCJKromanfont{Source Han Serif CN}
 \setCJKsansfont{Source Han Sans CN}
 \setCJKmonofont{Source Han Sans CN}
-\title{AOSC OS/Retro  User Manual}
+\title{AOSC OS/Retro: User Manual}
 \author{Various Authors at AOSC}
 \date{2021-09-20}
 \pagestyle{plain}
@@ -91,21 +96,22 @@
 
 
 % CoverPage
-\newcommand{\docversion}[0]{0.1.0-pre3}
+\newcommand{\docversion}[0]{0.1.0-pre4}
 \newcommand{\doctitleA}[0]{AOSC OS/Retro}
-\newcommand{\doctitleB}[0]{USER MANUAL}
+\newcommand{\doctitleBupper}[0]{USER MANUAL}
+\newcommand{\doctitleB}[0]{User Manual}
 \newcommand{\tpVersion}[0]{Version}
 \newcommand{\tpCopyright}[0]{Copyright {\copyright} 2021 Various Authors.}
 \newcommand{\tpLicense}[1]{Published under #1 License.}
 
 \newcommand{\makecoverpage}[0]{{
 
-    \AddToShipoutPictureBG*{%
-        % Two major boxes
-        \put(-31mm,0mm){%
-            \includegraphics[width=210mm]{retrologo-skeleton_10p.pdf}
-        }%        
-    }
+    % \AddToShipoutPictureBG*{%
+    %     % Two major boxes
+    %     \put(25mm,50mm){%
+    %         \includegraphics[width=90mm]{retrologo-skeleton.pdf}
+    %     }%        
+    % }
 
     % Start real content
     \raggedbottom
@@ -117,7 +123,7 @@
     \center
 
 
-    \hspace{1pt}\vspace{120pt}
+    \hspace{1pt}\vspace{70pt}
 
 
     {
@@ -125,7 +131,7 @@
         \sffamily
         % \fontspec{Linux Biolinum O}\bfseries
         \fontspec{Cuprum}\bfseries
-        \doctitleB
+        \doctitleBupper
     }
 
     
@@ -136,6 +142,9 @@
         Version \docversion\\
         September 2021
     }
+
+    \vspace{15pt}
+    \includegraphics[width=90mm]{retrologo-skeleton.pdf}
 
     \vfill
 
@@ -179,7 +188,11 @@
     \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}#1}
     \chaptermark{#1}
     {
-        \sffamily\huge\bfseries\scshape
+        \sffamily
+        % \rmfamily
+        % \fontspec{IBM Plex Sans}
+        \huge\bfseries
+        \scshape
         {\thechapter}. {#1}
     }\par\vspace{20pt}
 }

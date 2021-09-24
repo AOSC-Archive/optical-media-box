@@ -48,8 +48,10 @@
     \section{Target Hardware}
     
     AOSC OS/Retro currently support the following processing architectures and devices\ldots
+    \pagebreak
 
-    \begin{longtabu} {XX}
+    \begin{tabu} {XX}
+        \hline
         {Architecture} &
         {Typical Devices}\\
         \hline
@@ -68,7 +70,7 @@
         {PowerPC G5 and above, 64-bit big endain (\icode{ppc64})}
             & {Apple PowerMac G5, IBM eServer pSeries 610, etc.}\\
         \hline
-    \end{longtabu}
+    \end{tabu}
 
     \section{Common Components and Tools}
     
@@ -158,6 +160,8 @@
 
 
 
+
+
     \chapter{Goals}
 
     AOSC OS/Retro will be maintained with a few goals in mind, relating to system performance, storage requirements, and peripheral support. This chapter will also serve to outline AOSC OS/Retro's system requirements.
@@ -177,6 +181,8 @@
         \item AOSC OS/Retro should support dial-up, 10/100/1000Mbps Ethernet, as well as 802.11a/b/g/n/ac/ax wireless connections.
         \item AOSC OS/Retro should boot from IDE/EIDE/CE-ATA/SATA/SCSI-based hard disk drives. AOSC OS/Retro may boot from USB, optical media, or other forms of external/removable storage, but this will not officially supported.
     \end{itemize}
+
+
 
 
 
@@ -209,99 +215,99 @@
 
     On the 32-bit x86 architecture, AOSC OS/Retro Base and Server requires the following system components\ldots
 
-    \begin{itemize}
+    \begin{compactitem}
         \item Processor: Intel 80486 or compatible, FPU (Floating Point Unit) not required.
         \item System Bus: ISA, EISA, PCI, or PCI Express based system devices. MCA (Micro Channel Architecture) not supported.
         \item RAM: 12MiB (32MiB swap).
         \item Storage: 810MB ({\textasciitilde}514MiB).
-            \begin{itemize}
+            \begin{compactitem}
                 \item (Ultra) DMA via PCI Bus Mastering will significantly improve system performance.
-            \end{itemize}
+            \end{compactitem}
         \item Input Device: PS/2 or Serial Port Keyboard. Mouse not required.
         \item Display: VGA or compatible, or serial terminal.
-    \end{itemize}
+    \end{compactitem}
 
     \subsection{X11}
 
     AOSC OS/Retro X11 requires the following system components\ldots
 
-    \begin{itemize}
+    \begin{compactitem}
     \item Processor: Intel 80486 or compatible, FPU (Floating Point Unit) not required.
-        \begin{itemize}
+        \begin{compactitem}
             \item Intel Pentium II 233MHz, AMD K6, Cyrix MediaGX, Via C7 or above will significantly improve graphical experience.
             \item Intel Pentium III 500MHz, AMD K6-II/III or above recommended for video playback using MPlayer.
-        \end{itemize}
+        \end{compactitem}
     \item System Bus: ISA, EISA, PCI, or PCI Express based system devices. MCA (Micro Channel Architecture) not supported.
     \item RAM: 48MiB (64MiB swap).
-        \begin{itemize}
+        \begin{compactitem}
             \item 128MiB or above recommended for Internet browsing.
-        \end{itemize}
+        \end{compactitem}
     \item Storage: 1.2GB (~1141MiB).
-        \begin{itemize}
+        \begin{compactitem}
             \item 4.0GB (~3814MiB) recommended for local multimedia storage.
             \item (Ultra) DMA via PCI Bus Mastering will significantly improve system performance.
-        \end{itemize}
+        \end{compactitem}
     \item Input Device: PS/2 or Serial Port Keyboard and Mouse.
-        \begin{itemize}
+        \begin{compactitem}
             \item Touchscreen will be supported via I2C, Serial, or USB connections.
-        \end{itemize}
+        \end{compactitem}
     \item Display: VGA or compatible.
-        \begin{itemize}
+        \begin{compactitem}
             \item ISA/EISA video cards are not recommended, VESA Local Bus will significantly improve video performance.
             \item PCI and PCI Express video cards recommended, especially those with OpenGL 2.1 support (often found after ~2002), as this will allow for GPU-based video playback acceleration.
-        \end{itemize}
-    \end{itemize}
+        \end{compactitem}
+    \end{compactitem}
 
     \subsection{Trinity}
 
     AOSC OS/Retro Trinity requires the following system components\ldots
 
-    \begin{itemize}
+    \begin{compactitem}
     \item Processor: Intel Pentium II 233MHz, AMD K6, Cyrix MediaGX, Via C7 or above.
-        \begin{itemize}
+        \begin{compactitem}
         \item Intel Pentium III 500MHz, AMD K6-II/III or above recommended.
-        \end{itemize}
+        \end{compactitem}
     \item System Bus: ISA, EISA, PCI, or PCI Express based system devices. MCA (Micro Channel Architecture) not supported.
     \item RAM: 256MiB (256MiB swap).
-        \begin{itemize}
+        \begin{compactitem}
         \item 512MiB or above recommended for Internet browsing.
-        \end{itemize}
+        \end{compactitem}
     \item Storage: 3.2GB (~3052MiB).
-        \begin{itemize}
+        \begin{compactitem}
         \item 8GB (~7629MiB) recommended for local multimedia storage.
         \item (Ultra) DMA via PCI Bus Mastering will significantly improve system performance.
-        \end{itemize}
+        \end{compactitem}
     \item Input Device: PS/2 or Serial Port Keyboard and Mouse.
-        \begin{itemize}
+        \begin{compactitem}
         \item Touchscreen will be supported via I2C, Serial, or USB connections.
-        \end{itemize}
+        \end{compactitem}
     \item Display: VGA or compatible.
-        \begin{itemize}
+        \begin{compactitem}
         \item PCI and PCI Express video cards recommended, especially those with OpenGL 2.1 support (often found after ~2002), as this will allow for GPU-based video playback acceleration.
-        \end{itemize}
-    \end{itemize}
+        \end{compactitem}
+    \end{compactitem}
 
 
     \section{PowerPC Systems}
 
     All AOSC OS/Retro flavours should run on all supported devices on this architecture - that is, PowerPC-based Apple Macintosh computers with New World ROM support. If you would like to run Trinity Desktop Environment on your PowerPC devices, you are advised to have at least 256MiB of RAM installed.
 
-    \begin{itemize}
+    \begin{compactitem}
     \item Portables...
-        \begin{itemize}
+        \begin{compactitem}
         \item PowerBook G3 "Lombard" and "Pismo" models.
         \item All iBook G3, iBook G4, PowerBook G4 models.
-        \end{itemize}
+        \end{compactitem}
     \item Desktops...
-        \begin{itemize}
+        \begin{compactitem}
         \item Power Macintosh G3 "Blue and White" models.
         \item All Power Macintosh G4 and G5 models.
         \item All iMac G3 and G4 models.
         \item All eMac models.
         \item All G4-based Mac Mini models.
         \item All G4- and G5-based Xserve models.
-        \end{itemize}
-    \end{itemize}
+        \end{compactitem}
+    \end{compactitem}
 
     \section{Loongson 2F Systems}
 
@@ -340,6 +346,10 @@
     % \section{114514}
 
 
+
+
+
+
     \chapter{Afternotes}
     
     \section{Appendix I: Copyright}
@@ -347,7 +357,7 @@
     This manual is published with the \underline{CC BY 4.0} license.
 
     The source code of this manual is available at:\newline
-    \hspace{2em}\underline{\ttfamily\footnotesize{https://github.com/AOSC-Dev/optical-media-box}}
+    \hspace{2em}\icode{\footnotesize{https://github.com/AOSC-Dev/optical-media-box}}
 
     \vspace{1ex}This is the list of authors, sorted by Unicode codepoint order.
 
@@ -356,8 +366,28 @@
         \item Neruthes
     \end{compactitem}
 
-    \pagestyle{empty}
+    \section{Appendix II: Support}
+
+    \begin{tabu} {lX}
+        Website & \icode{\footnotesize https://aosc.io/} \\
+        Telegram & \icode{\footnotesize https://t.me/joinchat/BMnG9079MOteeIJLxrW\_Mw} \\
+        Discord & \icode{\footnotesize https://discord.gg/VYPHgt9} \\
+        IRC & \icode{\footnotesize \#aosc} \\
+    \end{tabu}
+
+    % \begin{minipage}{0.35\textwidth}
+    %     Hello World!
+    % \end{minipage}\hfill%
+    % \begin{minipage}{0.6\textwidth}
+    %     Another column!
+    % \end{minipage}
+
+
+
+
+    % END OF CONTENT
     \clearpage
+    \pagestyle{empty}
 
     \makebackcoverpage
 \end{document}

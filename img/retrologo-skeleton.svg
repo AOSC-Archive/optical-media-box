@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1300px" height="1300px" viewBox="0 0 1300 1300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>retrologo-skeleton</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="850" y="850" width="260" height="260"></rect>
+    </defs>
+    <g id="retrologo-skeleton" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#FFFFFF" x="0" y="0" width="1300" height="1300"></rect>
+        <g>
+            <rect id="circle" stroke="#000000" stroke-width="2" fill="#FFFFFF" x="150" y="150" width="800" height="800" rx="400"></rect>
+            <rect id="blue" stroke="#000000" stroke-width="2" fill="#FFFFFF" x="800" y="250" width="400" height="400"></rect>
+            <rect id="red" stroke="#000000" stroke-width="2" fill="#FFFFFF" x="250" y="800" width="400" height="400"></rect>
+            <path d="M833.5,1020 C826.16663,995.99988 818.000045,971.33346 809,946 C799.999955,920.66654 791.16671,895.33346 782.5,870 L512.5,870 C503.83329,895.33346 495.000045,920.66654 486,946 C476.999955,971.33346 468.83337,995.99988 461.5,1020 L299.5,1020 C325.50013,945.33296 350.16655,876.33365 373.5,813 C396.83345,749.66635 419.666555,690.00028 442,634 C464.333445,577.99972 486.333225,524.833585 508,474.5 C529.666775,424.166415 552.16655,375.00024 575.5,327 L724.5,327 C747.16678,375.00024 769.49989,424.166415 791.5,474.5 C813.50011,524.833585 835.666555,577.99972 858,634 C880.333445,690.00028 903.16655,749.66635 926.5,813 C949.83345,876.33365 974.49987,945.33296 1000.5,1020 L833.5,1020 Z M646.5,484 C643.16665,494.00005 638.1667,507.66658 631.5,525 C624.8333,542.33342 617.16671,562.33322 608.5,585 C599.83329,607.66678 590.333385,632.66653 580,660 C569.666615,687.33347 559.16672,715.99985 548.5,746 L745.5,746 C734.83328,715.99985 724.50005,687.33347 714.5,660 C704.49995,632.66653 695.000045,607.66678 686,585 C676.999955,562.33322 669.1667,542.33342 662.5,525 C655.8333,507.66658 650.50002,494.00005 646.5,484 Z" id="A" stroke="#000000" stroke-width="2" fill="#FFFFFF" fill-rule="nonzero"></path>
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="yellow" stroke="#000000" stroke-width="2" fill="#FFFFFF" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>
