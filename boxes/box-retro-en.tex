@@ -14,49 +14,57 @@
     \vspace{10pt}
     
     % Full-page large logo?
-    % \AddToShipoutPictureBG*{%
-    %     \put(70mm,125mm){%
-    %         \includegraphics[width=110mm]{retro-logo.png}
-    %     }%
-    % }
+    \AddToShipoutPictureBG*{%
+        \put(40mm,20mm){\begin{tcolorbox}[width=40mm,height=40mm,colframe=gray!35!black,colback=gray!35!black,circular arc]\end{tcolorbox}}%
+        \put(20mm,70mm){\begin{tcolorbox}[width=60mm,height=60mm,colframe=red!35!black,colback=red!35!black,circular arc]\end{tcolorbox}}%
+        \put(50mm,140mm){\begin{tcolorbox}[width=80mm,height=80mm,colframe=blue!35!black,colback=blue!35!black,circular arc]\end{tcolorbox}}%
+        \put(140mm,50mm){\begin{tcolorbox}[width=140mm,height=140mm,colframe=red!15!yellow!35!black,colback=red!15!yellow!35!black,circular arc]\end{tcolorbox}}%
+    }
 
-    % \color{white}
-    % \pagecolor{black}
+    \color{white}
+    \pagecolor{black}
 
     % \AddToShipoutPictureFG*{\put(12mm,60mm){\begin{minipage}{170mm}
     {
-        \center
+        
+        \hspace{1pt}\vspace{240pt}
+        
+        \vfill
 
         % {\Huge\fontspec{Source Han Serif CN Heavy}\fontsize{51pt}{56pt}\selectfont\doctitleA}
-        {\Huge\fontspec{Source Han Serif CN Medium}\fontsize{51pt}{56pt}\selectfont\doctitleA}
+        % {\Huge\fontspec{Source Han Serif CN Medium}\fontsize{51pt}{56pt}\selectfont\doctitleA}
+        % \hfill{\Huge\fontspec{Sora}\bfseries\fontsize{30pt}{35pt}\selectfont\doctitleA}
+        \hfill{\Huge\fontspec{IBM Plex Sans}\bfseries\fontsize{50pt}{60pt}\selectfont\doctitleA}
 
         \vspace{10pt}
-        \includegraphics[width=130mm]{retro-logo.png}
+        % \includegraphics[width=130mm]{retro-logo.png}
 
         \vspace{15pt}
-        {
-            % \fontspec{Liberation Sans}
-            \fontspec{Source Serif Pro}
-            \LARGE
-            \itshape
+        \hfill{
+            \sffamily
+            \fontspec{IBM Plex Sans}
+            % \fontspec{Source Serif Pro}
+            \Large
+            % \itshape
             % \tpOptiInstMedia
-            Enjoying AOSC OS on Your Retro Devices
+            Optical Installation Media\hspace{8pt} 光学安装媒介
+            % Enjoying AOSC OS on Your Retro Devices
         }
         
-        \vspace{10pt}
+        \vspace{70pt}
         \large
-        {\sffamily Release Version 2021 October}
+        \hfill{\sffamily Release Version 2021 October}
 
         % {\itshape{Enjoying AOSC OS on Your Retro Devices}}
 
 
-        \vspace{20pt}
+        \vspace{15pt}
         \mdseries
         \sffamily
-        % Available for 7 architectures:\vspace{3pt}
 
         % \color{white}
         % \bfseries
+        \hfill
         {i486}\hspace{3pt}·\hspace{3pt}
         {ARMv4}\hspace{3pt}·\hspace{3pt}
         {ARMv6}\hspace{3pt}·\hspace{3pt}
