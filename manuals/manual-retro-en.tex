@@ -1,7 +1,7 @@
 \input{texlib/manual.tex}
 
 \begin{document}
-    \baselineskip=15pt
+    \baselineskip=16pt
     \sloppy
     \raggedbottom
     \RaggedRight
@@ -11,24 +11,29 @@
 
     \setcounter{tocdepth}{1}
     \sffamily{\tableofcontents}
-    \clearpage
+    % \clearpage
 
-    \hspace{40mm}
+    % \hspace{40mm}
 
-    \large
-    \vspace{40mm}
-    Now that we have introduced our rationale to maintaining a Retro branch for AOSC OS
-    (we will now refer to this as AOSC OS/Retro), this page will serve as an introduction
-    to our design specifications and goals in maintaining this branch.
-    \vfill
+    % \large
+    % \vspace{40mm}
+    % Now that we have introduced our rationale to maintaining a Retro branch for AOSC OS
+    % (we will now refer to this as AOSC OS/Retro), this page will serve as an introduction
+    % to our design specifications and goals in maintaining this branch.
+    % \vfill
 
     \pagestyle{plain}
     \rmfamily\mdseries\normalsize
 
     \chapter{Specifications}
 
+    Now that we have introduced our rationale to maintaining a Retro branch for AOSC OS
+    (we will now refer to this as AOSC OS/Retro), this page will serve as an introduction
+    to our design specifications and goals in maintaining this branch.
+
     In terms of end-user experience and management characteristics, AOSC OS/Retro is a standard AOSC OS distribution.
-    However, changes are made in terms of dependencies, features, and maintenance schedules. In brief, AOSC OS/Retro will\ldots
+    However, changes are made in terms of dependencies, features, and maintenance schedules
+    In brief, AOSC OS/Retro will\ldots
 
     \begin{enumerate}
         \item Come with limited architectural support - only those specified
@@ -350,21 +355,344 @@
 
 
 
+    \chapter{Installation (Generic)}
+
+    This guide appies to i486, Loongson 2F, and PowerPC (32/64).
+
+    Apart from guides on how to create LiveKit media, this guide also outlines two main use cases for LiveKit,
+    the installation and maintenance of AOSC OS.
+    LiveKit is a portable AOSC OS installation (i.e. a Live environment) which provides a self-contained
+    and complete environment deployed on media such as USB flash drives and optical discs.
+
+
+    \section{Creating the LiveKit Media}
+    
+    As you read this manual, you should have received such discs in the same box.
+    If not, you may create one.
+
+    Creating LiveKit media is easy. This section shows how to create USB LiveKit media under Linux
+    (or other *nix operating systems with the dd command available), Windows, and macOS.
+    To create an optical media, simply use any optical disc burner to write the .iso you have obtained from the Downloads page.
+
+    \subsection{Linux, *nix, and macOS}
+
+    In operating systems using the \icode{/dev/sdXY} (where X is the device number, denoted with a letter;
+    Y is the partition number, denoted with a number), please first identify your USB device (via \icode{lsblk} or simply \icode{ls /dev/sd*}),
+    then execute the following commands \textit{as root}:
+
+\codeblock{
+dd if=aosc-os\_livekit\_DATE\_ARCH.iso \textbackslash\\
+    of=/dev/sdXY status=progress\\
+sync
+}
+% \begin{tcolorbox}[colframe=black,colback=white]
+% \small\begin{verbatim}
+% dd if=aosc-os_livekit_DATE_ARCH.iso \
+%     of=/dev/sdXY status=progress
+% sync
+% \end{verbatim}
+% \end{tcolorbox}
+
+    \codenote{NOTE: aosc-os\_livekit\_\$DATE\_\$ARCH.iso, where \$DATE is the release date, and \$ARCH
+        is the architecture number which the LiveKit targets. Please refer to your
+        download for exact file name.}
+
+    In operating systems what does not use the device name scheme shown above,
+    such as macOS, the procedure is much of the same:
+    First identify the device node which represents your USB device
+    (for macOS, use \icode{diskutil list} in the Terminal application),
+    then run the two commands as shown above using \textit{superuser privilege}.
+
+    \subsection{Windows}
+
+    Since there is no easy way to use dd or identify device node in a standard Windows installation
+    (especially in versions prior to Windows 10), we recommend using the \textbf{Rufus} tool to achieve the same effect.
+
+    Please refer to the Rufus site for usage details.
+
+    \section{Booting the LiveKit Media}
+    
+    Before you boot the LiveKit media, several precautions and procedures should be followed. Here are a few common considerations for your reference:
+    
+    \subsection{What devices are supported?}
+
+    LiveKit supports booting on the following device types:
+
+    \begin{compactitem}
+        \item BIOS- or (U)EFI-based x86\_64 and i486 devices.
+        \item (U)EFI-based, or SBSA and SystemReady ES certified AArch64 devices.
+        \item OpenFirmware- or Petitboot-based PowerPC Macintosh, POWER, and OpenPOWER devices.
+        \item PMON- or Kunlun-based Loongson 2/3 Devices.
+    \end{compactitem}
+
+    \subsection{Do I have enough RAM?}
+    
+    For booting a Live media, assume that your RAM is at least half the size of the iso downloaded. Insufficient RAM will result in failure during start up or during system installation.
+
+    While this is a less common issue with newer devices with RAM sizes in the gigabytes, devices targetted by AOSC OS/Retro, such as a Pentium MMX computer with 32MiB of RAM could easily run into this issue.
+
+    \subsection{Other necessary tweaks for Secure Boot-enabled devices}
+
+    LiveKit does not, and will probably not support Secure Boot.
+    Therefore, for UEFI-based systems with Secure Boot support,
+    you must disable Secure Boot in order to boot LiveKit.
+
+    \section{Installing AOSC OS}
+    
+    After starting up LiveKit, you should be greeted with a command prompt with minimal direction shown on screen. To install AOSC OS, first connect to the Internet with NetworkManager. Simply run the nmtui command and you will be greeted with a simple configuration interface, follow the on-screen directions to configure your network connection.
+
+    After you are connected, you may now use the included DeployKit installer to install AOSC OS. Simply run the following command to start the DeployKit installer:
+
+\codeblock{
+deploytkit
+}
+
+    You should be greeted with a wizard-like installer, simply follow the on-screen directions to install AOSC OS. This can take between minutes and nearly an hour depending on your device performance.
+    
+    
+    \section{Maintaining or Repairing AOSC OS}
+
+    In case of an unbootable system, or catastrophic system failures, LiveKit could prove useful as an environment for system maintenance and repair. Here are several classic use cases, for your reference.
+
+    \subsection{Repairing a Broken ext4 System Partition}
+
+    In case of a broken ext4 system partition, you may experience file access errors and system boot failure
+    as the Kernel or initialisation mechanism fail to mount the system partition.
+    Depending on your system configuration, you may not be able to repair your system partition
+    without the help of an external environment.
+
+    In this case, you may start LiveKit and, as you get to the command prompt,
+    you may use the \icode{fsck.ext4} command to repair your ext4 partition.
+
+    \subsubsection*{For Partition on IDE/ATA/SCSI/SAS Devices}
+\codeblock{
+fsck.ext4 -F /dev/sdXY
+}
+
+    \codenote{NOTE: Where X is the device number, denoted with a letter; Y is the partition number, denoted with a number.}
+
+    \subsubsection*{For Partitions on NVMe-based Devices}
+\codeblock{
+fsck.ext4 -F /dev/nvmeXnYpZ
+}
+
+    \codenote{NOTE: Where X represents the device node, Y represents the device number, and Z represents the partition number, all denoted with numbers.}
+
+    \subsubsection*{For Partitions on eMMC or SD Cards}
+\codeblock{
+fsck.ext4 -F /dev/mmcblkXpY
+}
+
+    \codenote{NOTE: Where X represents the device number, and Z represents the partition number, both denoted with numbers.}
+
+
+
+
+    \subsection{Continuing an Interrupted System Update}
+
+    In case of power loss, system crash, or other fatal errors during system updates,
+    or user errors, such as powering down or interrupting system updates,
+    you may run into boot or startup failures as a result.
+
+    To attempt a repair, first identify your system partition by using the \icode{fdisk -l} command,
+    and mount the system partition, the command differs based on your storage configuration.
+
+    \subsubsection*{For Partition on IDE/ATA/SCSI/SAS Devices}
+\codeblock{
+mount /dev/sdXY /mnt
+}
+
+    \codenote{NOTE: Where X is the device number, denoted with a letter; Y is the partition number, denoted with a number.}
+
+    \subsubsection*{For Partitions on NVMe-based Devices}
+\codeblock{
+mount /dev/nvmeXnYpZ /mnt
+}
+
+    \codenote{NOTE: Where X represents the device node, Y represents the device number, and Z represents the partition number, all denoted with numbers.}
+
+    \subsubsection*{For Partitions on eMMC or SD Cards}
+\codeblock{
+mount /dev/mmcblkXpY /mnt
+}
+
+    \codenote{NOTE: Where X represents the device number, and Z represents the partition number, both denoted with numbers.}
+
+
+    Next, you should connect to the Internet in case of need to download extra packages as a part of the repair procedures. Simply run the nmtui command and you will be greeted with a simple configuration interface, follow the on-screen directions to configure your network connection.
+
+    After you have successfully connected to your specified network, you may now switch into your AOSC OS installation by running the following command:
+
+\codeblock{
+arch-chroot /mnt
+}
+
+
+    If you are able to see the AOSC OS command prompt,
+    please run the following commands in succession,
+    \textit{only if the current command completes successfully}.
+    You should see a command prompt ending with \icode{\#} with a successfully completed command (otherwise,
+    in case of an error, you will see \icode{!}; in case of missing commands or files, you will see \icode{?}):
+
+\codeblock{
+dpkg --configure -a\\
+apt -f install\\
+apt full-upgrade
+}
+
+    After the three commands completed successfully, use the following command to exit out of your AOSC OS installation:
+
+\codeblock{
+exit
+}
+
+    Further, run the following command to ensure all data are written to the disk:
+
+\codeblock{
+sync
+}
+
+    Finally, to reboot to your AOSC OS installation, execute the \icode{reboot} command.
+
+
+
+
+
+    \subsection{Repairing Broken GRUB Installations}
+
+    In case of an unbootable system as a result of a broken GRUB installation (this can happen as a result of an overwritten boot sector, accidentally deleted GRUB configuration, etc.), you will first need to mount your system partition:
+
+    \subsubsection*{For Partition on IDE/ATA/SCSI/SAS Devices}
+\codeblock{
+mount /dev/sdXY /mnt
+}
+
+    \codenote{NOTE: Where X is the device number, denoted with a letter; Y is the partition number, denoted with a number.}
+
+    \subsubsection*{For Partitions on NVMe-based Devices}
+\codeblock{
+mount /dev/nvmeXnYpZ /mnt
+}
+
+    \codenote{NOTE: Where X represents the device node, Y represents the device number, and Z represents the partition number, all denoted with numbers.}
+
+    \subsubsection*{For Partitions on eMMC or SD Cards}
+\codeblock{
+mount /dev/mmcblkXpY /mnt
+}
+
+    \codenote{NOTE: Where X represents the device number, and Z represents the partition number, both denoted with numbers.}
+
+    You may now switch into your AOSC OS installation by running the following command:
+
+\codeblock{
+arch-chroot /mnt
+}
+
+    If you are able to see the AOSC OS command prompt, we may now commence on repairing your GRUB installation.
+
+    \subsubsection*{For (U)EFI- or Kunlun-based Systems}
+
+    Further mount your EFI system partition. You may identify this partition,
+    labelled as "EFI System," with the \icode{fdisk -l} command. After idenfying your EFI system partition,
+    run the following command to mount it:
+
+\codeblock{
+mount \$DEVICE /efi
+}
+
+    \codenote{NOTE: \texttt{\$DEVICE} is the device node listed in the first column on the line corresponding
+        the EFI system parititon (a parition of the "EFI System" type).}
+
+    Execute the following commands in succession to repair your GRUB installation.
+    \textit{Proceed only if the current command completes successfully}.
+    You should see a command prompt ending with \icode{\#} with a successfully completed command
+    (otherwise, in case of an error, you will see \icode{!}; in case of missing commands or files, you will see \icode{?}):
+
+\codeblock{
+grub-install --efi-directory=/efi \textbackslash\\
+    --bootloader-id="AOSC OS"\\
+grub-mkconfig -o /boot/grub/grub.cfg
+}
+
+    \subsubsection*{For BIOS-based Systems}
+
+    First, identify the disk on which you installed AOSC OS with fdisk -l. This will be listed in a line starting with Disk.
+
+    Execute the following commands in succession to repair your GRUB installation.
+    \textit{Proceed only if the current command completes successfully}.
+    You should see a command prompt ending with \icode{\#} with a successfully completed command
+    (otherwise, in case of an error, you will see \icode{!}; in case of missing commands or files, you will see \icode{?}):
+
+\codeblock{
+grub-install \$DEVICE\\
+grub-mkconfig -o /boot/grub/grub.cfg
+}
+
+    \codenote{NOTE: \texttt{\$DEVICE} is the device node listed in the first column on the line corresponding
+        the EFI system parititon (a parition of the "EFI System" type).}
+
+    \subsubsection*{For OpenFirmware-based Systems (Macintosh)}
+
+    Execute the following commands in succession to repair your GRUB installation.
+    \textit{Proceed only if the current command completes successfully}.
+    You should see a command prompt ending with \icode{\#} with a successfully completed command
+    (otherwise, in case of an error, you will see \icode{!}; in case of missing commands or files, you will see \icode{?}):
+
+\codeblock{
+grub-install\\
+grub-mkconfig -o /boot/grub/grub.cfg
+}
+
+
+    \section{Further Help Needed?}
+
+    If you would need further assistance with installing AOSC OS or repairing your AOSC OS installation,
+    please contact us via Discord, Telegram, or \#aosc on the Libera Chat IRC.
+    Our developers will be ready to assist and advise to help you navigate this sticky situation.
+
+    \section{Reporting Bugs}
+
+    If you have identified a bug while using LiveKit, or any tools pre-installed with LiveKit, please file a bug report at:
+
+\codeblock{
+https://github.com/AOSC-Dev/aosc-os-abbs
+}
+
+
+
+
+
+    \chapter{Installation (ARM)}
+
+    This guide applies to ARMv4, ARMv6, and ARMv7.
+    
+    \section{Blah blah}
+
+    // TODO
+
+
+
+
+
     \chapter{Afternotes}
     
     \section{Appendix I: Copyright}
 
     This manual is published with the \underline{CC BY 4.0} license.
 
-    The source code of this manual is available at:\newline
-    \hspace{2em}\icode{\footnotesize{https://github.com/AOSC-Dev/optical-media-box}}
+    The source code of this manual is available at:
+
+\codeblock{https://github.com/AOSC-Dev/optical-media-box}
 
     \vspace{1ex}This is the list of authors, sorted by Unicode codepoint order.
 
-    \begin{compactitem}
-        \item Mingcong Bai
-        \item Neruthes
-    \end{compactitem}
+    \begin{tcolorbox}[colframe=black,colback=white]
+        \begin{compactitem}
+            \item Mingcong Bai
+            \item Neruthes
+        \end{compactitem}
+    \end{tcolorbox}
 
     \section{Appendix II: Support}
 

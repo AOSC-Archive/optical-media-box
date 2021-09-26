@@ -1,7 +1,7 @@
 %!TEX TS-program = xelatex
 %!TEX encoding = UTF-8 Unicode
 
-\documentclass[a5paper,twosided,12pt]{book}
+\documentclass[a5paper,twosided,11pt]{book}
 
 \usepackage[a5paper,hmargin=9mm,tmargin=10mm,bmargin=20mm]{geometry}
 \usepackage{calc}
@@ -201,4 +201,16 @@
 
 
 \setulcolor{gray}
+
 \newcommand{\icode}[1]{{\ttfamily{\ul{#1}}}}
+
+\newcommand{\codeblock}[1]{
+\begin{tcolorbox}[colframe=black,colback=white]
+\ttfamily\small
+#1
+\end{tcolorbox}
+}
+
+\newcommand{\codenote}[1]{
+    {\footnotesize #1}
+}
