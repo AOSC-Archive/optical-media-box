@@ -1,4 +1,4 @@
-name: Main manuals/manual-retro-cover.pdf
+name: FILE manuals/manual-retro-cover.pdf
 on:
   push:
     branches: [ master ]

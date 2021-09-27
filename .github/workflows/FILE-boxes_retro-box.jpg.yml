@@ -1,4 +1,4 @@
-name: Main boxes/retro-box.jpg
+name: FILE boxes/retro-box.jpg
 on:
   push:
     branches: [ master ]
