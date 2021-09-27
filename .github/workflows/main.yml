@@ -11,9 +11,10 @@ on:
 
 jobs:
   build:
-    # runs-on: ubuntu-latest
     container: 
       image: aosc/aosc-os
+    
+    runs-on: aosc-os
 
     steps:
       - uses: actions/checkout@v2
