@@ -1,0 +1,21 @@
+name: Main manuals/manual-retro-cover.pdf
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+jobs:
+  build:    
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          mkdir -p _dist/manuals _dist/boxes
+          wget https://githubdist.neruthes.xyz/optical-media-box/manuals/manual-retro-cover.pdf -O _dist/manuals/manual-retro-cover.pdf
+
+      - name: Upload manuals/manual-retro-cover.pdf
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          path: _dist/manuals/manual-retro-cover.pdf
