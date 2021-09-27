@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: sudo apt install fonts-noto fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-extra fonts-noto-mono imagemagick texlive
+      - run: sudo apt install fonts-noto fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-extra fonts-noto-mono imagemagick texlive texlive-xelatex neofetch
       # - uses: mfinelli/setup-imagemagick@v1.1.0
       # - uses: xu-cheng/texlive-action/full@v1
       #   with:
@@ -23,6 +23,9 @@ jobs:
       #       apk add make
       #       make all
 
+      - run: apt list
+      - run: uname -a
+      - run: neofetch
       - run: make all
 
       # Build
