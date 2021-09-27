@@ -1,16 +1,25 @@
-name: Main
-
+name: Main boxes/retro-box.jpg
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
 jobs:
-  build:    
+  retro-box:    
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          mkdir -p _dist/manuals _dist/boxes
+          wget https://githubdist.neruthes.xyz/optical-media-box/boxes/retro-box.jpg -O _dist/boxes/retro-box.jpg
+
+      - name: Upload boxes/retro-box.jpg
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          path: _dist/boxes/retro-box.jpg
+  manual-retro-cover:    
     runs-on: ubuntu-latest
 
     steps:
@@ -18,22 +27,21 @@ jobs:
       - run: |
           mkdir -p _dist/manuals _dist/boxes
           wget https://githubdist.neruthes.xyz/optical-media-box/manuals/manual-retro-cover.pdf -O _dist/manuals/manual-retro-cover.pdf
-          wget https://githubdist.neruthes.xyz/optical-media-box/manuals/manual-retro.pdf -O _dist/manuals/manual-retro.pdf
-          wget https://githubdist.neruthes.xyz/optical-media-box/boxes/retro-box.jpg -O _dist/boxes/retro-box.jpg
 
-
-      # Upload
-      - name: Upload manual-retro-cover.pdf
+      - name: Upload manuals/manual-retro-cover.pdf
         uses: actions/upload-artifact@v2.2.4
         with:
           path: _dist/manuals/manual-retro-cover.pdf
+  manual-retro:    
+    runs-on: ubuntu-latest
 
-      - name: Upload manual-retro.pdf
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          mkdir -p _dist/manuals _dist/boxes
+          wget https://githubdist.neruthes.xyz/optical-media-box/manuals/manual-retro.pdf -O _dist/manuals/manual-retro.pdf
+
+      - name: Upload manuals/manual-retro.pdf
         uses: actions/upload-artifact@v2.2.4
         with:
           path: _dist/manuals/manual-retro.pdf
-
-      - name: Upload retro-box.jpg
-        uses: actions/upload-artifact@v2.2.4
-        with:
-          path: _dist/boxes/retro-box.jpg
