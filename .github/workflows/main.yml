@@ -16,10 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-        mkdir -p _dist/manuals _dist/boxes
-        wget https://neruthesgithubdistweb.vercel.app/optical-media-box/manuals/manual-retro-cover.pdf -O _dist/manuals/manual-retro-cover.pdf
-        wget https://neruthesgithubdistweb.vercel.app/optical-media-box/manuals/manual-retro.pdf -O _dist/manuals/manual-retro.pdf
-        wget https://neruthesgithubdistweb.vercel.app/optical-media-box/boxes/retro-box.jpg -O _dist/boxes/retro-box.jpg
+          mkdir -p _dist/manuals _dist/boxes
+          wget https://neruthesgithubdistweb.vercel.app/optical-media-box/manuals/manual-retro-cover.pdf -O _dist/manuals/manual-retro-cover.pdf
+          wget https://neruthesgithubdistweb.vercel.app/optical-media-box/manuals/manual-retro.pdf -O _dist/manuals/manual-retro.pdf
+          wget https://neruthesgithubdistweb.vercel.app/optical-media-box/boxes/retro-box.jpg -O _dist/boxes/retro-box.jpg
 
 
       # Upload
