@@ -15,14 +15,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: xu-cheng/texlive-action/full@v1
       - uses: mfinelli/setup-imagemagick@v1.1.0
+      - uses: xu-cheng/texlive-action/full@v1
+        with:
+          run: make all
 
       # Build
-      - name: Build manual
-        run: make manual
-      - name: Build box
-        run: make box
+      # - name: Build manual
+      #   run: make manual
+      # - name: Build box
+      #   run: make box
 
 
       # Upload
