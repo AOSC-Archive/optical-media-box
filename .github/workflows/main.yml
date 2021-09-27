@@ -18,7 +18,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: sudo apt install noto-cjk-fonts noto-fonts imagemagick texlive neofetch
+      - run: ls -lah /
+      - run: ls -lah /*
+      - run: echo "apt install noto-cjk-fonts noto-fonts imagemagick texlive neofetch" > /tmp/apt.sh
+      - run: su -s /tmp/apt.sh
       # - uses: mfinelli/setup-imagemagick@v1.1.0
       # - uses: xu-cheng/texlive-action/full@v1
       #   with:
