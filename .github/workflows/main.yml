@@ -10,34 +10,16 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    container: 
-      image: aosc/aosc-os
-    
+  build:    
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-      - run: ls -lah /
-      - run: ls -lah /*
-      - run: echo "apt install noto-cjk-fonts noto-fonts imagemagick texlive neofetch" > /tmp/apt.sh
-      - run: su -s /tmp/apt.sh
-      # - uses: mfinelli/setup-imagemagick@v1.1.0
-      # - uses: xu-cheng/texlive-action/full@v1
-      #   with:
-      #     run: |
-      #       apk add make
-      #       make all
-
-      - run: uname -a
-      - run: neofetch
-      - run: make all
-
-      # Build
-      # - name: Build manual
-      #   run: make manual
-      # - name: Build box
-      #   run: make box
+      - run: |
+        mkdir -p _dist/manuals _dist/boxes
+        wget https://neruthesgithubdistweb.vercel.app/optical-media-box/manuals/manual-retro-cover.pdf -O _dist/manuals/manual-retro-cover.pdf
+        wget https://neruthesgithubdistweb.vercel.app/optical-media-box/manuals/manual-retro.pdf -O _dist/manuals/manual-retro.pdf
+        wget https://neruthesgithubdistweb.vercel.app/optical-media-box/boxes/retro-box.jpg -O _dist/boxes/retro-box.jpg
 
 
       # Upload

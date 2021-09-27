@@ -4,8 +4,6 @@ help:
 	@echo "	all"
 	@echo "	manual"
 	@echo "	box"
-	@echo "	en"
-	@echo "	zh"
 	@echo " "
 	@echo "Making a tarball:    make tar"
 	@echo " "
@@ -34,3 +32,8 @@ manual:
 box:
 	convert boxes/retro-box.svg -resize 15000 -quality 91 _dist/boxes/retro-box.jpg
 	du -h _dist/boxes/retro-box.jpg
+
+ftp:
+	pushgithubdistweb
+	sleep 8
+	cd /home/neruthes/githubdistweb && bash push.sh
