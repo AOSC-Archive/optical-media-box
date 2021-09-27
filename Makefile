@@ -34,4 +34,4 @@ box:
 	du -h _dist/boxes/retro-box.jpg
 
 ftp:
-	proxychains -q $(which pushgithubdistweb)
+	proxychains -q pushgithubdistweb
