@@ -6,7 +6,7 @@ on:
     branches: [ master ]
   workflow_dispatch:
 jobs:
-  retro-box:    
+  download-all:    
     runs-on: ubuntu-latest
 
     steps:
