@@ -34,10 +34,3 @@ manual:
 box:
 	convert boxes/retro-box.svg -resize 15000 -quality 91 _dist/boxes/retro-box.jpg
 	du -h _dist/boxes/retro-box.jpg
-
-# box-legacy:
-# 	# ./tex.sh boxes/box-retro-en.tex
-# 	# ./tex.sh boxes/box-retro-side-en.tex
-# 	# pdfunite _dist/boxes/box-retro-en.pdf _dist/boxes/box-retro-side-en.pdf _dist/boxes/box-retro-all-en.pdf
-# 	# gs -sDEVICE=jpeg -o _dist/boxes/box-retro-all-en-%d.jpg -r600 _dist/boxes/box-retro-all-en.pdf
-

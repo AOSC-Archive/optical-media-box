@@ -1,0 +1,42 @@
+name: Main
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: xu-cheng/texlive-action/full@v1
+      - uses: mfinelli/setup-imagemagick@v1.1.0
+
+      # Build
+      - name: Build manual
+        run: make manual
+      - name: Build box
+        run: make box
+
+
+      # Upload
+      - name: Upload manual-retro-cover.pdf
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          path: _dist/manuals/manual-retro-cover.pdf
+
+      - name: Upload manual-retro.pdf
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          path: _dist/manuals/manual-retro.pdf
+
+      - name: Upload retro-box.jpg
+        uses: actions/upload-artifact@v2.2.4
+        with:
+          path: _dist/boxes/retro-box.jpg
