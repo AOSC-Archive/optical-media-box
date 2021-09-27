@@ -35,5 +35,3 @@ box:
 
 ftp:
 	pushgithubdistweb
-	sleep 8
-	cd /home/neruthes/githubdistweb && bash push.sh
