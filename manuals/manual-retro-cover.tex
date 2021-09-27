@@ -1,0 +1,121 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[a4paper,11pt]{article}
+\usepackage[papersize={210mm,280mm},landscape,hmargin=15mm,tmargin=10mm,bmargin=20mm]{geometry}
+
+\input{texlib/manual.tex}
+
+\begin{document}
+    \raggedright
+    \raggedbottom
+    \pagecolor{black}
+    \pagestyle{empty}
+
+    \AddToShipoutPictureBG*{%
+        \put(-2mm,-2mm){%
+            % \includegraphics[height=220mm]{box-cover-test-2.pdf}%
+            \includegraphics[height=260mm]{box-cover-test-2.pdf}%
+        }%
+    }
+    \AddToShipoutPictureFG*{%
+        \put(140mm,0mm){%
+            {\color{white!30!black}\rule{0.4pt}{210mm}}
+        }%
+        \put(155mm,200mm){%
+            \begin{minipage}[t][180mm][t]{130mm}
+                
+
+                \raggedbottom
+                \RaggedRight
+                \pagestyle{empty}
+                \fontspec{Source Han Serif CN Heavy}
+                \CJKfontspec{Source Han Serif CN Heavy}
+
+                % \center
+
+                \color{white}
+                
+
+
+                % \hspace{1pt}\vspace{1pt}
+
+                % \includegraphics[width=24mm,height=24mm]{retro-logo.png}
+                \vspace{4pt}
+                \vspace{100pt}
+
+                {
+                    % \bfseries
+                    \huge
+                    \sffamily
+                    % \fontspec{Cuprum Bold}
+                    \fontspec{Noto Sans SemiCondensed SemiBold}
+                    \CJKfontspec{Noto Sans CJK SC Medium}
+                    
+                    USER MANUAL
+
+                    \vspace{8pt}
+                    用户手册
+                }
+
+                
+
+                % \vspace{10pt}{
+                %     \rmfamily\color{white!82!black}\normalsize\mdseries
+
+                %     Version \docversion\\
+                %     September 2021
+                % }
+
+                % \vspace{20pt}
+                % \includegraphics[width=40mm]{anan-mac.png}
+                \vfill
+
+                {
+
+                    % \begin{minipage}{\textwidth}
+                        % \center
+                        % {\hfill
+                        % \includegraphics[width=14mm,height=14mm]{aosc.pdf}\hspace{10pt}
+                        % \includegraphics[width=24mm,height=24mm]{retro-logo.png}
+                        % \hfill}
+                    % \end{minipage}
+                    % \vspace{5pt}
+                    
+                    \fontspec{Source Han Serif CN Heavy}
+                    \bfseries
+                    \LARGE
+                    AOSC OS/Retro
+
+                    \vspace{5pt}
+                    {
+                        \rmfamily
+                        \normalsize\mdseries
+                        Enjoying AOSC OS on Your Retro Devices
+                    }
+                }
+
+                
+            \end{minipage}
+        }%        
+    }
+
+    % \begin{minipage}[t][178mm][t]{140mm}
+        \color{white}
+
+        \hspace{1pt}
+        \vfill
+
+        \small\sffamily\mdseries
+        \baselineskip=16pt
+
+        {Version}{ }{\docversion}\\
+        Copyright {\copyright} 2021 Various Authors at AOSC.\\
+        Published under CC BY 4.0 License.\\
+        {版本}{ }{\docversion}\\
+        版权所有 {\copyright} 2021 来自 AOSC 的作者们\\
+        以{ }CC BY 4.0{ }许可证发布
+
+        
+    % \end{minipage}
+\end{document}

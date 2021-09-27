@@ -1,9 +1,6 @@
-%!TEX TS-program = xelatex
-%!TEX encoding = UTF-8 Unicode
 
-\documentclass[a5paper,twosided,11pt]{book}
 
-\usepackage[a5paper,hmargin=9mm,tmargin=10mm,bmargin=20mm]{geometry}
+
 \usepackage{calc}
 \usepackage{amsmath,xltxtra,xunicode}
 \usepackage{titlesec}
@@ -32,6 +29,7 @@
 \usepackage{tabu}
 \usepackage{makecell}
 \usepackage[dvipsnames]{xcolor}
+\usepackage{svg}
 \usepackage{graphicx}
 \usepackage{tikz}
 \usepackage{eso-pic}
@@ -96,13 +94,7 @@
 
 
 % CoverPage
-\newcommand{\docversion}[0]{0.1.0-pre4}
-\newcommand{\doctitleA}[0]{AOSC OS/Retro}
-\newcommand{\doctitleBupper}[0]{USER MANUAL}
-\newcommand{\doctitleB}[0]{User Manual}
-\newcommand{\tpVersion}[0]{Version}
-\newcommand{\tpCopyright}[0]{Copyright {\copyright} 2021 Various Authors.}
-\newcommand{\tpLicense}[1]{Published under #1 License.}
+\newcommand{\docversion}[0]{0.1.1-pre1}
 
 \newcommand{\makecoverpage}[0]{{
 
@@ -122,47 +114,73 @@
 
     \center
 
+    \color{white}
+    \pagecolor{black}
 
-    \hspace{1pt}\vspace{70pt}
 
+    % \hspace{1pt}\vspace{1pt}
+
+    \includegraphics[width=24mm,height=24mm]{retro-logo.png}
+    \vspace{4pt}
 
     {
-        \Huge
+        % \bfseries
+        \huge
         \sffamily
-        \fontspec{Cuprum}\bfseries
-        \doctitleBupper
+        % \fontspec{Cuprum Bold}
+        \fontspec{Noto Sans SemiCondensed SemiBold}
+        \CJKfontspec{Noto Sans CJK SC Medium}
+        
+        USER MANUAL
+
+        用户手册
     }
 
     
 
-    \vspace{10pt}{
-        \rmfamily\color{black!75!white}\normalsize\mdseries
+    % \vspace{10pt}{
+    %     \rmfamily\color{white!82!black}\normalsize\mdseries
 
-        Version \docversion\\
-        September 2021
-    }
+    %     Version \docversion\\
+    %     September 2021
+    % }
 
-    \vspace{15pt}
-    \includegraphics[width=90mm]{retrologo-skeleton.pdf}
-
+    \vfill
+    \includegraphics[width=70mm]{anan-mac.png}
     \vfill
 
     {
+
+        % \begin{minipage}{\textwidth}
+            % \center
+            % {\hfill
+            % \includegraphics[width=14mm,height=14mm]{aosc.pdf}\hspace{10pt}
+            % \includegraphics[width=24mm,height=24mm]{retro-logo.png}
+            % \hfill}
+        % \end{minipage}
+        % \vspace{5pt}
+        
         \fontspec{Source Han Serif CN Heavy}
         \bfseries
-        \huge
-        \doctitleA
+        \LARGE
+        AOSC OS/Retro
 
-        \vspace{10pt}
+        \vspace{5pt}
         {
             \rmfamily
-            \large\mdseries
+            \normalsize\mdseries
             Enjoying AOSC OS on Your Retro Devices
         }
     }
     
+    
 
-    \cleardoublepage
+    \pagebreak
+    \color{black}
+    \pagecolor{white}
+    \pagebreak
+
+    % \cleardoublepage
     \setcounter{page}{1}
     \rmfamily\mdseries\normalsize
 
@@ -181,21 +199,6 @@
 
 
 
-% 
-\renewcommand{\chapter}[1]{
-    \pagebreak
-    \refstepcounter{chapter}
-    \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}#1}
-    \chaptermark{#1}
-    {
-        \sffamily
-        % \rmfamily
-        % \fontspec{IBM Plex Sans}
-        \huge\bfseries
-        \scshape
-        {\thechapter}. {#1}
-    }\par\vspace{20pt}
-}
 
 
 

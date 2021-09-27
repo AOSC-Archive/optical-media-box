@@ -1,4 +1,25 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[a5paper,twosided,11pt]{book}
+\usepackage[a5paper,hmargin=9mm,tmargin=10mm,bmargin=20mm]{geometry}
+
 \input{texlib/manual.tex}
+
+\renewcommand{\chapter}[1]{
+    \pagebreak
+    \refstepcounter{chapter}
+    \addcontentsline{toc}{chapter}{\protect\numberline{\thechapter}#1}
+    \chaptermark{#1}
+    {
+        \sffamily
+        % \rmfamily
+        % \fontspec{IBM Plex Sans}
+        \huge\bfseries
+        \scshape
+        {\thechapter}. {#1}
+    }\par\vspace{20pt}
+}
 
 \begin{document}
     \baselineskip=16pt
@@ -7,7 +28,7 @@
     \RaggedRight
     \overfullrule=10pt
 
-    \makecoverpage
+    % \makecoverpage
 
     \setcounter{tocdepth}{1}
     \sffamily{\tableofcontents}
@@ -714,8 +735,8 @@ https://github.com/AOSC-Dev/aosc-os-abbs
 
 
     % END OF CONTENT
-    \clearpage
-    \pagestyle{empty}
+    % \clearpage
+    % \pagestyle{empty}
 
-    \makebackcoverpage
+    % \makebackcoverpage
 \end{document}

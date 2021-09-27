@@ -28,14 +28,8 @@ pushtag:
 	git push origin '*'
 
 manual:
-	make manual-en
-	make manual-zh
-
-manual-en:
-	./tex.sh manuals/manual-retro-en.tex
-
-manual-zh:
-	./tex.sh manuals/manual-retro-zh.tex
+	./tex.sh manuals/manual-retro.tex
+	# ./tex.sh manuals/manual-retro-cover.tex
 
 box:
 	convert boxes/retro-box.svg -resize 15000 -quality 91 _dist/boxes/retro-box.jpg
