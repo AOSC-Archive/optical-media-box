@@ -18,7 +18,9 @@ jobs:
       - uses: mfinelli/setup-imagemagick@v1.1.0
       - uses: xu-cheng/texlive-action/full@v1
         with:
-          run: apk add make & make all
+          run: |
+            apk add make
+            make all
 
       # Build
       # - name: Build manual
