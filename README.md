@@ -4,16 +4,16 @@
 
 This repository contains the source code and image assets for creating the AOSC OS optical release boxes.
 
+
+
+
 ## Contents
+
+While this repository is not exclusively designed for AOSC OS/Retro, we currently only have the materials for Retro.
 
 ### Manuals
 
-List of manuals:
-
-- Normal, EN
-- Normal, ZH
-- Retro, EN
-- Retro, ZH
+One manual for 2 languages: `en-US`, `zh-Hans`.
 
 ```
 make manual
@@ -21,22 +21,14 @@ make manual
 
 ### Boxes
 
-List of boxes:
+One box for 3 languages: `en-US`, `zh-Hans`, `zh-Hant`.
 
-- box-retro-en
-- box-retro-zh
+```
+make box
+```
 
-Each box has
 
-- 2 source files:
-  - `box-retro-LANG.tex`
-  - `box-retro-side-LANG.tex`
-- 3 output files:
-  - `box-retro-LANG.pdf`
-  - `box-retro-side-LANG.pdf`
-  - `box-retro-all-LANG.pdf`
 
-For compatibility purposes, JPEG outputs `box-retro-all-LANG-%d.jpg` are added along.
 
 ## Building
 
@@ -51,18 +43,40 @@ Targets:
 - all
 - manual
 - box
-- en
-- zh
+
+
+
+
 
 ## Dependencies
 
 - TeX Live
   - `xelatex`
 - Fonts
-  - Liberation Sans
-  - Liberation Serif
-  - Source Code Pro
-  - Noto Sans CJK SC
+  - IBM Plex Sans
+  - Noto Sans
+  - Noto Serif
+  - Inria Serif
+  - Noto Sans CJK
+  - Noto Serif CJK
+
+
+
+
+## Version Control
+
+The manual and the box have their respective versions. When creating a tag or a release, we only specify the date `YYYYMMDD`.
+
+### Publish a Tag
+
+- Step 1: Generate all outputs with `make all`.
+- Step 2: Push outputs with `make ftp`.
+  - Note: This step is optional. We need this step to make sure that **GitHub Actions** can get latest files for generating artifacts.
+- Step 3: Push commits to GitHub.
+- Step 4: Create a new tag and push it to GitHub with `make tag`.
+
+
+
 
 ## Copyright
 

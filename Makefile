@@ -7,7 +7,7 @@ help:
 	@echo " "
 	@echo "Making a tarball:    make tar"
 	@echo " "
-	@echo "Pushing a tag:       make pushtag"
+	@echo "Creating a tag:       make tag"
 
 all:
 	make manual
@@ -17,17 +17,15 @@ tar:
 	touch AOSC_OS-optical-media-box.tar.xz
 	rm AOSC_OS-optical-media-box.tar.xz
 	tar cvf AOSC_OS-optical-media-box.tar.xz   --exclude tex-tmp --exclude dist.tar.xz   _dist
-	@echo "Created tarvall"
+	@echo "Created tarball"
 	du -h AOSC_OS-optical-media-box.tar.xz
 
-pushtag:
-	@echo "[WARNING] This action could push unwanted refs."
-	@echo "Pushing tags..."
-	git push origin '*'
+tag:
+	bash .make/tag.sh
 
 manual:
 	./tex.sh manuals/manual-retro.tex
-	# ./tex.sh manuals/manual-retro-cover.tex
+	./tex.sh manuals/manual-retro-cover.tex
 
 box:
 	convert boxes/retro-box.svg -resize 15000 -quality 91 _dist/boxes/retro-box.jpg
