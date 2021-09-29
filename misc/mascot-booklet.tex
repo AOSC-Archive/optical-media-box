@@ -1,0 +1,226 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[a5paper,twosided,12pt]{book}
+\usepackage[papersize={140mm,210mm},hmargin=9mm,tmargin=10mm,bmargin=20mm]{geometry}
+
+
+\usepackage{calc}
+\usepackage{amsmath,xltxtra,xunicode}
+\usepackage{titlesec}
+\usepackage{fontspec}
+\usepackage{wasysym,oz,pxfonts,txfonts}
+
+
+\usepackage{xeCJK}
+\XeTeXlinebreaklocale "zh" 
+\XeTeXlinebreakskip = 0pt plus 1pt 
+
+% =========================================
+\usepackage[none]{hyphenat}
+\usepackage{soul}
+\usepackage[hidelinks]{hyperref}
+\usepackage{lipsum}
+\usepackage{lastpage}
+\usepackage{everypage}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{paralist}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{tocloft}
+\usepackage{longtable}
+\usepackage{tabu}
+\usepackage{makecell}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{svg}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\usepackage{fontawesome5}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{ragged2e}
+\usepackage{tcolorbox}
+\setmainfont{Source Serif Pro}
+\setromanfont{Source Serif Pro}
+\setromanfont{Inria Serif}
+\setsansfont{IBM Plex Sans}
+\setmonofont{JetBrains Mono NL}
+\setCJKmainfont{Source Han Serif CN}
+\setCJKromanfont{Source Han Serif CN}
+\setCJKsansfont{Source Han Sans CN}
+\setCJKmonofont{Source Han Sans CN}
+\title{AOSC OS/Retro: User Manual}
+\author{Various Authors at AOSC}
+\date{2021-09-20}
+\pagestyle{plain}
+% =========================================
+
+% =========================================
+% START CORPORATION CONFIG
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlength{\baselineskip}{15pt}
+\tabulinesep=2pt
+% END CORPORATION CONFIG
+% =========================================
+
+% =========================================
+% START COMMON STYLESHEET
+% Table
+\renewcommand\theadalign{l}
+\renewcommand\theadfont{\sffamily\bfseries}
+% Font Size
+
+% END COMMON STYLESHEET
+% =========================================
+
+
+\graphicspath{{/home/neruthes/EWS/AOSC/optical-media-box/img}}
+
+
+% Headers & Footers
+% \fancypagestyle{plain}{
+%     \renewcommand{\headrulewidth}{0pt}
+%     \renewcommand{\footrulewidth}{0.4pt}
+%     \fancyhf{}
+%     \fancyfoot{}
+%     \fancyfoot[LE,RO]{\small\ttfamily\thepage}
+%     \fancyfoot[LO]{\small\sffamily{AOSC OS/Retro: User Manual}}
+%     \fancyfoot[RE]{\small\sffamily{AOSC OS/Retro 用户手册}}
+% }
+
+
+
+
+
+
+\setulcolor{gray}
+
+\newcommand{\icode}[1]{{\ttfamily{\ul{#1}}}}
+
+\newcommand{\codeblock}[1]{
+\begin{tcolorbox}[colframe=black,colback=white]
+\ttfamily\small
+#1
+\end{tcolorbox}
+}
+
+\newcommand{\codenote}[1]{
+    {\footnotesize #1}
+}
+
+\begin{document}
+    \raggedright
+    \raggedbottom
+% ===============================================================
+% ===============================================================
+
+
+
+
+
+
+
+
+\begin{titlepage}
+    \sffamily
+    \normalsize
+    \bfseries
+
+
+    Anthon Open Source Community
+    \vspace{4pt}\\
+    安同开源社区
+    \vspace{4pt}\\
+    安同開源社區
+
+    \vfill
+
+
+    \Large
+    \mdseries
+
+    Mascot Specification Book
+    \vspace{4pt}\\
+    吉祥物设定集
+    \vspace{4pt}\\
+    吉祥物設定集
+
+
+\end{titlepage}
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% An-An was born a rabbit, but found herself a girl with bunny ears and tails when she woke up one day. She couldn't seem to remember why.
+
+\newcommand{\tbmdkey}[1]{{
+    \sffamily
+    \normalsize
+    % \color{orange}
+    {#1}\hspace{8pt}}}
+\newcommand{\tbmdval}[1]{{
+    \color{black}
+    {#1}}}
+
+
+\begingroup
+    \tabcolsep=0pt
+    \color{black}
+    \sffamily
+    \pagestyle{empty}
+
+    \begin{tabu} {XX[2]}
+        \tbmdkey{Birthday} & {December 1st}\\
+        \tbmdkey{Age} & {???}\\
+        \tbmdkey{Hair Colour} & {Black}\\
+        \tbmdkey{Eye Colour} & {Black}\\
+        \tbmdkey{Favourite Colours} & {Red, Yellow, Blue, White, and Black}\\
+        \tbmdkey{Favourite Food} & {Claypot Rice with Salted Fish, Jelly, Ice Cream, \ldots{} Everything}\\
+    \end{tabu}
+    
+    \begin{tabu} {XX[2]}
+        \tbmdkey{Birthday} & {December 1st}\\
+        \tbmdkey{Age} & {???}\\
+        \tbmdkey{Hair Color} & {Black}\\
+        \tbmdkey{Eye Color} & {Black}\\
+        \tbmdkey{Favourite Colors} & {Red, Yellow, Blue, White, and Black}\\
+        \tbmdkey{Favourite Food} & {Claypot Rice with Salted Fish, Jelly, Ice Cream, \ldots{} Everything}\\
+    \end{tabu}
+    
+    \begin{tabu} {XX[2]}
+        \tbmdkey{生日} & {12 月 01 日}\\
+        \tbmdkey{年龄} & {???}\\
+        \tbmdkey{发色} & {黑}\\
+        \tbmdkey{瞳色} & {黑}\\
+        \tbmdkey{喜爱的颜色} & {红/黄/蓝/白/黑}\\
+        \tbmdkey{喜爱的食品} & {咸鱼煲仔饭、果冻、冰淇淋\ldots{}以及一切}\\
+    \end{tabu}
+    
+    \begin{tabu} {XX[2]}
+        \tbmdkey{生日} & {12 月 01 日}\\
+        \tbmdkey{年齡} & {???}\\
+        \tbmdkey{髮色} & {黑}\\
+        \tbmdkey{瞳色} & {黑}\\
+        \tbmdkey{喜愛的顏色} & {紅/黃/藍/白/黑}\\
+        \tbmdkey{喜愛的食品} & {鹹魚煲仔飯、果凍、冰淇淋\ldots{}以及一切}\\
+    \end{tabu}
+\endgroup
+
+
+
+
+
+
+
+
+
+% ===============================================================
+% ===============================================================
+\end{document}

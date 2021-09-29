@@ -16,7 +16,7 @@ While this repository is not exclusively designed for AOSC OS/Retro, we currentl
 One manual for 2 languages: `en-US`, `zh-Hans`.
 
 ```
-make manual
+just manual
 ```
 
 ### Boxes
@@ -24,7 +24,7 @@ make manual
 One box for 3 languages: `en-US`, `zh-Hans`, `zh-Hant`.
 
 ```
-make box
+just box
 ```
 
 
@@ -35,7 +35,7 @@ make box
 Easy building:
 
 ```
-make all
+just all
 ```
 
 Targets:
@@ -43,6 +43,7 @@ Targets:
 - all
 - manual
 - box
+- misc
 
 
 
@@ -69,11 +70,11 @@ The manual and the box have their respective versions. When creating a tag or a 
 
 ### Publish a Tag
 
-- Step 1: Generate all outputs with `make all`.
-- Step 2: Push outputs with `make ftp`.
+- Step 1: Generate all outputs with `just all`.
+- Step 2: Push outputs with `just ftp`.
   - Note: This step is optional. We need this step to make sure that **GitHub Actions** can get latest files for generating artifacts.
 - Step 3: Push commits to GitHub.
-- Step 4: Create a new tag and push it to GitHub with `make tag`.
+- Step 4: Create a new tag and push it to GitHub with `just tag`.
 
 
 
