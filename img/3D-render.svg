@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="2000px" height="2000px" viewBox="0 0 2000 2000" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>3D-render</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="61.6216361%" cy="22.0213281%" fx="61.6216361%" fy="22.0213281%" r="100%" id="radialGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F4F4F4" offset="17.4740772%"></stop>
+            <stop stop-color="#646464" offset="100%"></stop>
+        </radialGradient>
+        <radialGradient cx="81.05155%" cy="13.1668915%" fx="81.05155%" fy="13.1668915%" r="107.053914%" id="radialGradient-2">
+            <stop stop-color="#000000" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#000000" stop-opacity="0.0347191871" offset="74.1221823%"></stop>
+            <stop stop-color="#000000" stop-opacity="0.342056381" offset="100%"></stop>
+        </radialGradient>
+        <circle id="path-3" cx="680" cy="680" r="680"></circle>
+    </defs>
+    <g id="3D-render" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linejoin="round">
+        <g id="Group" transform="translate(59.000000, 88.000000)">
+            <g id="Oval">
+                <use fill="url(#radialGradient-1)" xlink:href="#path-3"></use>
+                <use stroke="#000000" stroke-width="9" fill-opacity="0.25" fill="url(#radialGradient-2)" xlink:href="#path-3"></use>
+            </g>
+            <g id="Blue" transform="translate(1112.000000, 168.000000)" stroke="#0B13F1" stroke-width="9">
+                <polygon id="Bottom" fill-opacity="0.9" fill="#B5B7F1" points="1.33693057e-12 593 526 495 770 777 226 893"></polygon>
+                <polygon id="Back" fill-opacity="0.9" fill="#B5B7F1" points="1.76125781e-12 80 526 9.9475983e-13 526 495 1.25055521e-12 593"></polygon>
+                <polygon id="Right" fill-opacity="0.9" fill="#B5B7F1" points="770 281 526 7.10542736e-13 526 495 770 777"></polygon>
+                <polygon id="Left" fill-opacity="0.4" fill="#0B13F1" points="1.07913678e-12 80 226 378 226 893 5.68434189e-13 593"></polygon>
+                <polygon id="Front" fill-opacity="0.4" fill="#0B13F1" points="770 281 226 378 226 893 770 777"></polygon>
+                <polygon id="Top" fill-opacity="0.4" fill="#0B13F1" points="1.33693057e-12 80 526 4.2721382e-13 770 281 226 378"></polygon>
+            </g>
+            <g id="Red" transform="translate(99.000000, 1121.000000)" stroke="#FF0000" stroke-width="9">
+                <polygon id="Bottom" fill-opacity="0.85" fill="#FFBFBF" points="640 503 414 703 0 597 244 415"></polygon>
+                <polygon id="Back" fill-opacity="0.85" fill="#FFBFBF" points="640 70 640 503 244 415 244 0"></polygon>
+                <polygon id="Left" fill-opacity="0.85" fill="#FFBFBF" points="0 181 0 597 244 415 244 0"></polygon>
+                <polygon id="Right" fill-opacity="0.4" fill="#FF0000" points="640 70 640 503 414 703 414 268"></polygon>
+                <polygon id="Front" fill-opacity="0.4" fill="#FF0000" points="0 181 414 268 414 703 0 597"></polygon>
+                <polygon id="Top" fill-opacity="0.4" fill="#FF0000" points="640 70 414 268 0 181 244 0"></polygon>
+            </g>
+            <g id="Yellow" transform="translate(1247.000000, 1187.000000)" stroke="#FFDD33" stroke-width="9">
+                <polygon id="Bottom" fill-opacity="0.9" fill="#FFF4BF" points="-1.1969592e-13 385 317 294 500 465 180 572"></polygon>
+                <polygon id="Back" fill-opacity="0.9" fill="#FFF4BF" points="-3.99680289e-14 80 317 3.50630983e-15 317 294 -4.37150316e-14 385"></polygon>
+                <polygon id="Right" fill-opacity="0.9" fill="#FFF4BF" points="500 160 317 3.50630983e-15 317 294 500 465"></polygon>
+                <polygon id="Left" fill-opacity="0.4" fill="#FFDD33" points="-3.99680289e-14 80 180 260 180 572 -4.37150316e-14 385"></polygon>
+                <polygon id="Front" fill-opacity="0.4" fill="#FFDD33" points="500 160 180 260 180 572 500 465"></polygon>
+                <polygon id="Top" fill-opacity="0.4" fill="#FFDD33" points="-1.11022302e-13 80 317 1.24371e-13 500 160 180 260"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>
